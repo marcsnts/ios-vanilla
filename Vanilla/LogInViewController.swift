@@ -29,7 +29,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         view.addGestureRecognizer(tap)
         
         let scopes = (UIApplication.shared.delegate as! AppDelegate).scopes
-        _ = FlybitsManager.isConnected(scopes: scopes) { isConnected, user, error in
+        _ = FlybitsManager.isConnected(completion: { isConnected, user, error in
             guard error == nil else {
                 print(error!.localizedDescription)
                 return
@@ -44,7 +44,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
             DispatchQueue.main.async {
                 self.show(relevantContentVC, sender: self)
             }
-        }
+        })
     }
     
     func dismissKeyboard() {

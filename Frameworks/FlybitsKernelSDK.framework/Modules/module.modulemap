@@ -7,4 +7,5 @@ framework module FlybitsKernelSDK {
 
 module FlybitsKernelSDK.Swift {
     header "FlybitsKernelSDK-Swift.h"
+    requires objc
 }
