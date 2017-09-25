@@ -71,17 +71,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Required Project ID
     
     func checkForRequiredFlybitsProjectID() -> Bool {
-        
+        if let id = getFlybitsProjectID() {
+            self.projectID = id
+            return true
+        }
+
+        return false
+    }
+
+    func getFlybitsProjectID() -> String? {
         guard let url = Bundle.main.url(forResource: "FlybitsProjectID", withExtension: "plist") else {
             print("Missing FlybitsProjectID.plist file")
-            return false
+            return nil
         }
         guard let dictionary = NSDictionary(contentsOf: url), let projectID = dictionary["ProjectID"] as? String else {
             print("Failed reading from ProjectID key in FlybitsProjectID.plist file")
-            return false
+            return nil
         }
-        self.projectID = projectID
-        return true
+
+        return projectID
     }
 
     // MARK: - APNS Notifications

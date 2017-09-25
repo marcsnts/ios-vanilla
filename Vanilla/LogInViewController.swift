@@ -21,6 +21,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+
+    enum SegueId: String {
+        case register = "RegisterSegue",
+        settings = "SettingsSegue"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +33,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        let scopes = (UIApplication.shared.delegate as! AppDelegate).scopes
         _ = FlybitsManager.isConnected(completion: { isConnected, user, error in
             guard error == nil else {
                 print(error!.localizedDescription)
