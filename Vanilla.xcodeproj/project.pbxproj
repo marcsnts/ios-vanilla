@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
+		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAEC81F759EE9003D501B /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		49EDAEC21F759EE2003D501B /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				FA46568F1F1C59CB00A13F72 /* Extensions.swift */,
 				FABE850F1F1554BF00833B93 /* RelevantContentViewController.swift */,
 				FA546D381F16B8A400038EDA /* Data Models.swift */,
+				49AE955A1F7986930050530B /* ContentViewController.swift */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */,
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
 				FA546D391F16B8A400038EDA /* Data Models.swift in Sources */,
+				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
 				FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */,
 				FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */,
 			);

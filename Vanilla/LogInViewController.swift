@@ -106,11 +106,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     }
     
     func showRelevantContent() {
-        let relevantContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
-        relevantContent.navigationItem.hidesBackButton = true
-        relevantContent.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+        test()
+//        let relevantContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
+//        relevantContent.navigationItem.hidesBackButton = true
+//        relevantContent.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+//        DispatchQueue.main.async {
+//            self.show(relevantContent, sender: self)
+//        }
+    }
+
+    func test() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
+        vc.navigationItem.hidesBackButton = true
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
         DispatchQueue.main.async {
-            self.show(relevantContent, sender: self)
+            self.show(vc, sender: self)
         }
     }
     
