@@ -51,7 +51,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         })
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -124,7 +124,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         }
     }
     
-    func logout(sender: Any?) {
+    @objc func logout(sender: Any?) {
         _ = navigationController?.popViewController(animated: true)
         var flybitsManager = (UIApplication.shared.delegate as! AppDelegate).flybitsManager
         if flybitsManager == nil {

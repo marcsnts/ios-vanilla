@@ -65,7 +65,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     // MARK: - Text field selector
-    func projectIDFieldDidChange(_ textField: UITextField) {
+    @objc func projectIDFieldDidChange(_ textField: UITextField) {
         projectID = textField.text
     }
 
