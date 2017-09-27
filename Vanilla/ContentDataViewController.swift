@@ -69,14 +69,23 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 return UITableViewCell()
         }
 
+        let imageCellFrom: (URL) -> UITableViewCell? = { imageUrl in
+            guard let data = try? Data(contentsOf: imageUrl) else { return nil }
+
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseID, for: indexPath) as! ImageCell
+            cell.imgView.image = UIImage(data: data)
+            return cell
+        }
+
         var labelText: String?
         switch contentType {
         case .contact:
             if let contactModel = contentData as? ContactModel {
                 switch indexPath.section {
                 case 0:
-                    //fix later image
-                    break
+                    if let profilePictureUrl = contactModel.profilePicture, let imageCell = imageCellFrom(profilePictureUrl) {
+                        return imageCell
+                    }
                 case 1:
                     labelText = contactModel.firstName
                 case 2:
@@ -105,10 +114,8 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 case 3:
                     labelText = menuItemModel.ingredients?.joined(separator: ", ")
                 case 4:
-                    if let imageUrl = menuItemModel.image, let data = try? Data(contentsOf: imageUrl) {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseID, for: indexPath) as! ImageCell
-                        cell.imgView.image = UIImage(data: data)
-                        return cell
+                    if let imageUrl = menuItemModel.image, let imageCell = imageCellFrom(imageUrl) {
+                        return imageCell
                     }
                 default:
                     break
