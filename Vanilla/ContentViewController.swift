@@ -22,7 +22,6 @@ class ContentViewController: UIViewController {
     var templateIDs: [String] {
         return Set(contents.flatMap{$0.templateId}).map{$0}
     }
-
     var sectionTemplates: [Int: String] = [:]
 
     override func viewDidLoad() {
