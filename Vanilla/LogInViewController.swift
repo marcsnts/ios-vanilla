@@ -43,10 +43,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
             }
             print("Welcome back, \(user.firstname!)")
             print("User is connected. Will show relevant content.")
-            let relevantContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
-            relevantContentVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+            let contentVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
+            contentVc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(LogInViewController.logout(sender:)))
             DispatchQueue.main.async {
-                self.show(relevantContentVC, sender: self)
+                self.show(contentVc, sender: self)
             }
         })
     }
@@ -100,22 +100,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
                 return
             }
             print("Welcome, \(user.firstname!)")
-            self.showRelevantContent()
+            self.showContent()
             completion(true, nil)
         }
     }
     
-    func showRelevantContent() {
-        test()
-//        let relevantContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
-//        relevantContent.navigationItem.hidesBackButton = true
-//        relevantContent.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
-//        DispatchQueue.main.async {
-//            self.show(relevantContent, sender: self)
-//        }
-    }
-
-    func test() {
+    func showContent() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
         vc.navigationItem.hidesBackButton = true
         vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))

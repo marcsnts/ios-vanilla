@@ -213,10 +213,10 @@
             </objects>
             <point key="canvasLocation" x="-49" y="139"/>
         </scene>
-        <!--Content View Controller-->
+        <!--Content-->
         <scene sceneID="SE5-Tv-jTS">
             <objects>
-                <viewController storyboardIdentifier="Content" id="cF4-Pf-FF0" customClass="ContentViewController" customModule="Vanilla" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Content" title="Content" id="cF4-Pf-FF0" customClass="ContentViewController" customModule="Vanilla" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dOA-zd-PWv"/>
                         <viewControllerLayoutGuide type="bottom" id="K9k-Tb-JXO"/>
