@@ -45,14 +45,8 @@ class SettingsViewController: UIViewController {
     }
 
     func updateProjectIDTo(_ newID: String) {
-        guard let url = Bundle.main.url(forResource: "FlybitsProjectID", withExtension: "plist") else {
-            return
-        }
-
-        if let plistDictionary = NSMutableDictionary(contentsOf: url) {
-            plistDictionary["ProjectID"] = newID
-            plistDictionary.write(to: url, atomically: true)
-        }
+        UserDefaults.standard.set(newID, forKey: "projectID")
+        (UIApplication.shared.delegate as! AppDelegate).projectID = newID
     }
 
     func updateEnvironmentTo(_ newEnvironment: Environment) {

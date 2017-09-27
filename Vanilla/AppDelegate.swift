@@ -79,6 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
+    /**
+     Returns the Flybits project ID from `UserDefaults`, if not found in `UserDefaults`, resorts to `FlybitsProjectID.plist`
+     - warning: Will return `nil` if `FlybitsProjectID.plist` does not exist with key "ProjectID"
+     */
     func getFlybitsProjectID() -> String? {
         guard let url = Bundle.main.url(forResource: "FlybitsProjectID", withExtension: "plist") else {
             print("Missing FlybitsProjectID.plist file")
@@ -89,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return nil
         }
 
-        return projectID
+        return UserDefaults.standard.string(forKey: "projectID") ?? projectID
     }
 
     // MARK: - APNS Notifications
