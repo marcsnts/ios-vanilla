@@ -12,7 +12,6 @@ import FlybitsKernelSDK
 class ContentViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    let cellReuseId = "DefaultCell"
     var contents = [Content]() {
         didSet {
             DispatchQueue.main.async {
@@ -42,11 +41,9 @@ class ContentViewController: UIViewController {
             guard let pagedContent = pagedContent, error == nil else {
                 return
             }
-
             self.contents = pagedContent.elements
         })
     }
-
 }
 
 extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
@@ -71,12 +68,17 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         return contents.flatMap({$0.templateId}).filter({$0 == templateID}).count
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let templateID = sectionTemplates[indexPath.section]
         let sectionContents = self.contents.filter({$0.templateId == templateID})
         let cell = tableView.dequeueReusableCell(withIdentifier: ContentCell.reuseID, for: indexPath) as! ContentCell
         if indexPath.row < sectionContents.count {
             let content = sectionContents[indexPath.row]
+            cell.contentData = content.pagedContentData?.elements.first
             cell.titleLabel.text = content.name?.value ?? "Unnamed content"
             cell.subtitleLabel.text = content.contentDescription?.value ?? "No description"
             if let contentIconUrl = content.iconUrl, let url = URL(string: contentIconUrl), let imageData = try? Data(contentsOf: url) {
@@ -86,12 +88,24 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ContentCell, let contentData = cell.contentData,
+              let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentData") as? ContentDataViewController else {
+            return
+        }
+
+        vc.contentData = contentData
+        vc.title = cell.titleLabel.text
+        self.show(vc, sender: self)
+    }
 }
 
 class ContentCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var contentImageView: UIImageView!
+    var contentData: ContentData?
     static let reuseID = "ContentCell"
 }
 

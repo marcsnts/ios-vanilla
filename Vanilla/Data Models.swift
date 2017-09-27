@@ -79,7 +79,10 @@ class MixedContent: ContentData {
 }
 
 enum Template: String {
-    case contact, menuItem, restaurant
+    case contact,
+    menuItem,
+    restaurant,
+    none // A template that is not one of the default templates
 
     init?(fromId: String) {
         if let matchingTemplate = Template.all.filter({$0.id() == fromId}).first {
@@ -97,6 +100,8 @@ enum Template: String {
             return "C97B0E8A-AFD5-424C-B69E-F646EA125229"
         case .restaurant:
             return "37968887-EF03-456C-9EF6-33C7F18B1FEC"
+        case .none:
+            return ""
         }
     }
 
@@ -108,6 +113,21 @@ enum Template: String {
             return "Menu Item"
         case .restaurant:
             return "Restaurant"
+        case .none:
+            return ""
+        }
+    }
+
+    func numberOfProperties() -> Int {
+        switch self {
+        case .contact:
+            return 7
+        case .menuItem:
+            return 5
+        case .restaurant:
+            return 8
+        case .none:
+            return 0
         }
     }
 
