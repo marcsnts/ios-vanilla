@@ -9,7 +9,7 @@
 import UIKit
 import FlybitsSDK
 
-class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsViewController: UIViewController {
     enum Section {
         case projectID, environment
 
@@ -35,10 +35,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
     var environment: Environment = .production
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -68,8 +64,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @objc func projectIDFieldDidChange(_ textField: UITextField) {
         projectID = textField.text
     }
+}
 
-    // MARK: - Table view
+
+// MARK: - Table view
+extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.count
     }
@@ -81,7 +80,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == Section.projectID.hashValue ? Section.projectID.title : Section.environment.title
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.projectID.hashValue ? TextFieldCell.reuseID : CheckCell.reuseID,
                                                  for: indexPath)
@@ -119,6 +118,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         lastCellChecked = cell
     }
 }
+
+// MARK: - Settings table view cells
 
 class TextFieldCell: UITableViewCell {
     static let reuseID = "TextFieldCell"

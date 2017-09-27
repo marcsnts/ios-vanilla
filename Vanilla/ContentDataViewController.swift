@@ -32,7 +32,9 @@ class ContentDataViewController: UIViewController {
     var contentData: ContentData? {
         didSet {
             if tableView != nil {
-                tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -49,6 +51,8 @@ class ContentDataViewController: UIViewController {
         }
     }
 }
+
+// MARK: - Table view
 
 extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -153,8 +157,9 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
+// MARK: - Content data table view cell
+
 class ImageCell: UITableViewCell {
     static let reuseID = "ImageCell"
     @IBOutlet weak var imgView: UIImageView!
 }
-

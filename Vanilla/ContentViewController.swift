@@ -10,7 +10,6 @@ import UIKit
 import FlybitsKernelSDK
 
 class ContentViewController: UIViewController {
-
     @IBOutlet weak var tableView: UITableView!
     var contents = [Content]() {
         didSet {
@@ -44,6 +43,8 @@ class ContentViewController: UIViewController {
         })
     }
 }
+
+// MARK: - Table view
 
 extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,6 +100,8 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         self.show(vc, sender: self)
     }
 }
+
+// MARK: - Content table view cell
 
 class ContentCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
