@@ -92,7 +92,14 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? ContentCell, let contentData = cell.contentData,
               let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentData") as? ContentDataViewController else {
-            return
+                let alert: UIAlertController = {
+                    let alert = UIAlertController(title: "Unknown Content Data", message: "Cannot show the content data for this content instance",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    return alert
+                }()
+                self.present(alert, animated: true, completion: nil)
+                return
         }
 
         vc.contentData = contentData
