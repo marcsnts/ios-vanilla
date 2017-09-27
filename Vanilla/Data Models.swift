@@ -16,6 +16,11 @@ enum ContentError: Error {
     case deserializationError(String)
 }
 
+enum UserDefaultKey: String {
+    case environment
+    case projectID
+}
+
 struct Constant {
     static let textTitle = "txtTitle"
     static let textDescription = "txtDescription"

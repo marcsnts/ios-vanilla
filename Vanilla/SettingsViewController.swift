@@ -26,7 +26,21 @@ class SettingsViewController: UIViewController {
         staging = "Staging",
         development = "Development"
 
-        static let count = 4
+        init?(hashValue: Int) {
+            switch hashValue {
+            case 0:
+                self = .production
+            case 1:
+                self = .productionEurope
+            case 2:
+                self = .staging
+            case 3:
+                self = .development
+            default:
+                return nil
+            }
+         }
+
         static let all = [Environment.production, Environment.productionEurope, Environment.development, Environment.staging]
     }
 
@@ -34,7 +48,7 @@ class SettingsViewController: UIViewController {
     var projectID: String?
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
-    var environment: Environment = .production
+    var environment: Environment = Environment(hashValue: (UserDefaults.standard.value(forKey: UserDefaultKey.environment.rawValue) as? Int) ?? 0) ?? .production
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -45,13 +59,14 @@ class SettingsViewController: UIViewController {
     }
 
     func updateProjectIDTo(_ newID: String) {
-        UserDefaults.standard.set(newID, forKey: "projectID")
+        UserDefaults.standard.set(newID, forKey: UserDefaultKey.projectID.rawValue)
         (UIApplication.shared.delegate as! AppDelegate).projectID = newID
     }
 
     func updateEnvironmentTo(_ newEnvironment: Environment) {
         guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.hashValue) else { return }
         FlybitsManager.environment = newEnvironment
+        UserDefaults.standard.set(newEnvironment.hashValue, forKey: UserDefaultKey.environment.rawValue)
     }
 
     // MARK: - Text field selector
@@ -68,7 +83,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == Section.projectID.hashValue ? 1 : Environment.count
+        return section == Section.projectID.hashValue ? 1 : Environment.all.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -87,7 +102,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             (cell as! CheckCell).checkmarkImageView.tintColor = UINavigationBar.appearance().tintColor
             let environment = Environment.all[indexPath.row]
             (cell as! CheckCell).titleLabel.text = environment.rawValue
-            if FlybitsManager.environment.rawValue == environment.hashValue {
+            if self.environment == environment {
                 (cell as! CheckCell).isChecked = true
                 lastCellChecked = cell as? CheckCell
             } else {
