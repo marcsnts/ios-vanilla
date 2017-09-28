@@ -40,10 +40,10 @@ class MenuItemModel: ContentData {
 
 extension MenuItemModel {
     enum Key: String {
-        case name,
-        calories,
-        price,
-        ingredients,
-        image
+        case name
+        case calories
+        case price
+        case ingredients
+        case image
     }
 }

@@ -136,4 +136,3 @@ class ContentCell: UITableViewCell {
     var contentData: ContentData?
     static let reuseID = "ContentCell"
 }
-

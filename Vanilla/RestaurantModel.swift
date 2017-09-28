@@ -33,10 +33,10 @@ class RestaurantModel: ContentData {
 
 extension RestaurantModel {
     enum Key: String {
-        case name,
-        openingDate,
-        numberOfEmployees = "numEmployees",
-        location
+        case name
+        case openingDate
+        case numberOfEmployees = "numEmployees"
+        case location
     }
 }
 
@@ -69,10 +69,10 @@ class LocationModel: ContentData {
 
 extension LocationModel {
     enum Key: String {
-        case city,
-        postalCode = "postal",
-        province,
-        country,
-        address
+        case city
+        case postalCode = "postal"
+        case province
+        case country
+        case address
     }
 }

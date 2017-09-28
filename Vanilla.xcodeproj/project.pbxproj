@@ -12,6 +12,7 @@
 		4989FB0A1F7D774C00EE9A70 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB091F7D774C00EE9A70 /* ContactModel.swift */; };
 		4989FB0C1F7D77B000EE9A70 /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0B1F7D77B000EE9A70 /* MenuItemModel.swift */; };
 		4989FB0E1F7D77D500EE9A70 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0D1F7D77D500EE9A70 /* RestaurantModel.swift */; };
+		4989FB101F7D8AA900EE9A70 /* Content Templates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* Content Templates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -78,6 +79,7 @@
 		4989FB091F7D774C00EE9A70 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		4989FB0B1F7D77B000EE9A70 /* MenuItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 		4989FB0D1F7D77D500EE9A70 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		4989FB0F1F7D8AA900EE9A70 /* Content Templates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Content Templates.swift"; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		49EDAEC21F759EE2003D501B /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				4989FB091F7D774C00EE9A70 /* ContactModel.swift */,
 				4989FB0B1F7D77B000EE9A70 /* MenuItemModel.swift */,
 				4989FB0D1F7D77D500EE9A70 /* RestaurantModel.swift */,
+				4989FB0F1F7D8AA900EE9A70 /* Content Templates.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */,
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
 				FA546D391F16B8A400038EDA /* Data Models.swift in Sources */,
+				4989FB101F7D8AA900EE9A70 /* Content Templates.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
 				FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */,
 				FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */,

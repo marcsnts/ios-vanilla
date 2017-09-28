@@ -10,23 +10,6 @@ import UIKit
 import FlybitsKernelSDK
 
 class ContentDataViewController: UIViewController {
-    enum ContentDataModel {
-        case contact
-        case menuItem
-        case restaurant
-
-        func sectionTitles() -> [String] {
-            switch self {
-            case .contact:
-                return ["Profile picture", "First name", "Last name", "Date of birth", "Company", "Email", "Phone number"]
-            case .menuItem:
-                return ["Name", "Price", "Calories", "Ingredients", "Image"]
-            case .restaurant:
-                return ["Name", "Date of opening", "Number of employees", "Country", "Province", "City", "Address", "Postal code"]
-            }
-        }
-    }
-
     @IBOutlet weak var tableView: UITableView!
     let labelCellReuseID = "DefaultCell"
     var contentData: ContentData? {
@@ -48,6 +31,27 @@ class ContentDataViewController: UIViewController {
             return ContentDataModel.restaurant
         default:
             return nil
+        }
+    }
+}
+
+// MARK: - Enumerations
+
+extension ContentDataViewController {
+    enum ContentDataModel {
+        case contact
+        case menuItem
+        case restaurant
+
+        func sectionTitles() -> [String] {
+            switch self {
+            case .contact:
+                return ["Profile picture", "First name", "Last name", "Date of birth", "Company", "Email", "Phone number"]
+            case .menuItem:
+                return ["Name", "Price", "Calories", "Ingredients", "Image"]
+            case .restaurant:
+                return ["Name", "Date of opening", "Number of employees", "Country", "Province", "City", "Address", "Postal code"]
+            }
         }
     }
 }

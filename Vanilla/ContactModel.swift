@@ -43,12 +43,12 @@ class ContactModel: ContentData {
 
 extension ContactModel {
     enum Key: String {
-        case firstName,
-        lastName,
-        dob,
-        company,
-        profilePicture,
-        email,
-        phoneNumber
+        case firstName
+        case lastName
+        case dob
+        case company
+        case profilePicture
+        case email
+        case phoneNumber
     }
 }

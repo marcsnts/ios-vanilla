@@ -10,15 +10,6 @@ import UIKit
 import FlybitsContextSDK
 
 class SettingsViewController: UIViewController {
-    enum Section {
-        case projectID, environment
-
-        var title: String {
-            return self == .projectID ? "Project id" : "Environment"
-        }
-        static let count = 2
-    }
-
     @IBOutlet weak var tableView: UITableView!
     var projectID: String?
     let defaultCellReuseID = "DefaultCell"
@@ -56,6 +47,20 @@ class SettingsViewController: UIViewController {
     // MARK: - Text field selector
     @objc func projectIDFieldDidChange(_ textField: UITextField) {
         projectID = textField.text
+    }
+}
+
+// MARK: - Enumerations
+
+extension SettingsViewController {
+    enum Section {
+        case projectID
+        case environment
+
+        var title: String {
+            return self == .projectID ? "Project id" : "Environment"
+        }
+        static let count = 2
     }
 }
 
