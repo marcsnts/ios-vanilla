@@ -19,7 +19,13 @@ class ContentViewController: UIViewController {
         }
     }
     var templateIDs: [String] {
-        return Set(contents.flatMap{$0.templateId}).map{$0}
+        var ids = [String]()
+        for id in contents.flatMap({$0.templateId}) {
+            if !ids.contains(id) {
+                ids.append(id)
+            }
+        }
+        return ids
     }
     var sectionTemplates: [Int: String] = [:]
 
@@ -39,7 +45,20 @@ class ContentViewController: UIViewController {
             guard let pagedContent = pagedContent, error == nil else {
                 return
             }
-            self.contents = pagedContent.elements
+
+            let contents: [Content] = {
+                var contents = [Content]()
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.contact.id()}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.menuItem.id()}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.restaurant.id()}))
+                let customContents = pagedContent.elements.filter({
+                    return !($0.templateId == Template.contact.id() || $0.templateId == Template.menuItem.id() || $0.templateId == Template.restaurant.id())
+                })
+                contents.append(contentsOf: customContents)
+
+                return contents
+            }()
+            self.contents = contents
         })
     }
 }
