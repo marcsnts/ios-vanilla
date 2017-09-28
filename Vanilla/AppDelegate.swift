@@ -169,3 +169,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate {
+    enum UserDefaultsKey: String {
+        case environment
+        case projectID
+    }
+}

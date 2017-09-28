@@ -16,11 +16,6 @@ enum ContentError: Error {
     case deserializationError(String)
 }
 
-enum UserDefaultKey: String {
-    case environment
-    case projectID
-}
-
 struct Constant {
     static let textTitle = "txtTitle"
     static let textDescription = "txtDescription"
@@ -130,95 +125,4 @@ enum Template: String {
     }
 
     static let all: [Template] = [.contact, .menuItem, .restaurant]
-}
-
-class ContactModel: ContentData {
-    var firstName: String
-    var lastName: String
-    var dob: Date?
-    var company: String?
-    var profilePicture: URL?
-    var email: String
-    var phoneNumber: Int
-
-    required init?(responseData: Any) throws {
-        guard let representation = responseData as? [String: Any] else {
-            throw ContentError.missingRepresentationDictionary
-        }
-
-        self.firstName = representation["firstName"] as! String
-        self.lastName = representation["lastName"] as! String
-        self.dob = (representation["dob"] as? String)?.toDate()
-        self.company = representation["company"] as? String
-        if let profilePictureURL = representation["profilePicture"] as? String {
-            self.profilePicture = URL(string: profilePictureURL)
-        }
-        self.email = representation["email"] as! String
-        self.phoneNumber = representation["phoneNumber"] as! Int
-
-        try! super.init(responseData: responseData)
-    }
-}
-
-class MenuItemModel: ContentData {
-    var name: LocalizedObject<String>
-    var calories: Int
-    var price: Double
-    var ingredients: [String]?
-    var image: URL?
-
-    required init?(responseData: Any) throws {
-        guard let representation = responseData as? [String: Any] else { throw ContentError.missingRepresentationDictionary }
-        guard let localizations = representation[Constant.localizations] as? [String: [String: Any]] else { throw ContentError.missingLocalizationsDictionary }
-
-        self.name = LocalizedObject<String>(key: "name", localizations: localizations)
-        self.calories = representation["calories"] as! Int
-        self.price = representation["price"] as! Double
-        if let ingredients = representation["ingredients"] as? [String]? {
-            self.ingredients = ingredients
-        }
-        if let imageURL = representation["image"] as? String {
-            self.image = URL(string: imageURL)
-        }
-
-        try! super.init(responseData: responseData)
-    }
-
-}
-
-class RestaurantModel: ContentData {
-    var name: String
-    var openingDate: Date
-    var numEmployees: Int
-    var location: LocationModel
-
-    required init?(responseData: Any) throws {
-        guard let representation = responseData as? [String: Any] else { throw ContentError.missingRepresentationDictionary }
-
-        self.name = representation["name"] as! String
-        self.openingDate = (representation["openingDate"] as! String).toDate()!
-        self.numEmployees = representation["numEmployees"] as! Int
-        try! self.location = LocationModel(responseData: representation["location"]!)!
-        try! super.init(responseData: responseData)
-    }
-}
-
-class LocationModel: ContentData {
-    var city: String
-    var postalCode: String
-    var province: String
-    var country: String
-    var address: String
-
-    required init?(responseData: Any) throws {
-        guard let representation = responseData as? [String: Any] else { throw ContentError.missingRepresentationDictionary }
-
-        self.city = representation["city"] as! String
-        self.postalCode = representation["postal"] as! String
-        self.province = representation["province"] as! String
-        self.country = representation["country"] as! String
-        self.address = representation["address"] as! String
-
-        try! super.init(responseData: responseData)
-    }
 }
