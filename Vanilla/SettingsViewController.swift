@@ -14,17 +14,8 @@ class SettingsViewController: UIViewController {
     var projectID: String?
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
-    var environment = FlybitsManager.Environment(rawValue: (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int) ?? 0) ?? .Production {
-        didSet {
-            print("did setting")
-            print(environment.toString())
-        }
-        willSet{
-            print("will setingt")
-            print(environment.toString())
-        }
-    }
-
+    var environment = FlybitsManager.Environment(rawValue: (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int) ?? 0) ?? .Production
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let newProjectID = projectID {
