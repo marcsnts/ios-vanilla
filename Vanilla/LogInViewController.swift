@@ -21,6 +21,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+
+    enum SegueId: String {
+        case register = "RegisterSegue",
+        settings = "SettingsSegue"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +33,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        let scopes = (UIApplication.shared.delegate as! AppDelegate).scopes
-        _ = FlybitsManager.isConnected(scopes: scopes) { isConnected, user, error in
+        _ = FlybitsManager.isConnected(completion: { isConnected, user, error in
             guard error == nil else {
                 print(error!.localizedDescription)
                 return
@@ -39,15 +43,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
             }
             print("Welcome back, \(user.firstname!)")
             print("User is connected. Will show relevant content.")
-            let relevantContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
-            relevantContentVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+            let contentVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
+            contentVc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(LogInViewController.logout(sender:)))
             DispatchQueue.main.async {
-                self.show(relevantContentVC, sender: self)
+                self.show(contentVc, sender: self)
             }
-        }
+        })
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -96,21 +100,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
                 return
             }
             print("Welcome, \(user.firstname!)")
-            self.showRelevantContent()
+            self.showContent()
             completion(true, nil)
         }
     }
     
-    func showRelevantContent() {
-        let relevantContent = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RelevantContent")
-        relevantContent.navigationItem.hidesBackButton = true
-        relevantContent.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+    func showContent() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
+        vc.navigationItem.hidesBackButton = true
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
         DispatchQueue.main.async {
-            self.show(relevantContent, sender: self)
+            self.show(vc, sender: self)
         }
     }
     
-    func logout(sender: Any?) {
+    @objc func logout(sender: Any?) {
         _ = navigationController?.popViewController(animated: true)
         var flybitsManager = (UIApplication.shared.delegate as! AppDelegate).flybitsManager
         if flybitsManager == nil {

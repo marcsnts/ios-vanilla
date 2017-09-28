@@ -52,7 +52,7 @@ class ContextMenuViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    func close() {
+    @objc func close() {
         dismiss(animated: true, completion: nil)
     }
     

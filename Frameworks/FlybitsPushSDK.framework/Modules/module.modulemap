@@ -7,4 +7,5 @@ framework module FlybitsPushSDK {
 
 module FlybitsPushSDK.Swift {
     header "FlybitsPushSDK-Swift.h"
+    requires objc
 }

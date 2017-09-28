@@ -68,7 +68,7 @@ class RelevantContentTableViewController: UITableViewController {
     }
     
     var relevantTimer: Timer?
-    func loadAllRelevantData() {
+    @objc func loadAllRelevantData() {
         // Associate template IDs with their data models
         let templateIDsAndClassModelsDictionary: [String: ContentData.Type] = [
             TemplateID.textOnly.rawValue: TextOnlyContent.self,
@@ -92,7 +92,7 @@ class RelevantContentTableViewController: UITableViewController {
         }
     }
     
-    func showContextMenu() {
+    @objc func showContextMenu() {
         guard let contextPlugin = self.contextPlugin else {
             print("Error: You haven't instantiated a context plugin yet.")
             return

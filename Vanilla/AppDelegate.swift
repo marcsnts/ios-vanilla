@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FlybitsManager.enableLogging()
         
         UINavigationBar.appearance().tintColor = UIColor(red: 41/255, green: 190/255, blue: 238/255, alpha: 1)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 51/255, green: 62/255, blue: 72/255, alpha: 1)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 51/255, green: 62/255, blue: 72/255, alpha: 1)]
         
         var shouldPerformAdditionalDelegateHandling = true
         
@@ -71,17 +71,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Required Project ID
     
     func checkForRequiredFlybitsProjectID() -> Bool {
-        
+        if let id = getFlybitsProjectID() {
+            self.projectID = id
+            return true
+        }
+
+        return false
+    }
+
+    /**
+     Returns the Flybits project ID from `UserDefaults`, if not found in `UserDefaults`, resorts to `FlybitsProjectID.plist`
+     - warning: Will return `nil` if `FlybitsProjectID.plist` does not exist with key "ProjectID"
+     */
+    func getFlybitsProjectID() -> String? {
         guard let url = Bundle.main.url(forResource: "FlybitsProjectID", withExtension: "plist") else {
             print("Missing FlybitsProjectID.plist file")
-            return false
+            return nil
         }
         guard let dictionary = NSDictionary(contentsOf: url), let projectID = dictionary["ProjectID"] as? String else {
             print("Failed reading from ProjectID key in FlybitsProjectID.plist file")
-            return false
+            return nil
         }
-        self.projectID = projectID
-        return true
+
+        return UserDefaults.standard.string(forKey: "projectID") ?? projectID
     }
 
     // MARK: - APNS Notifications
