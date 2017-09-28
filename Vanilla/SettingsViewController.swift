@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
     var environment = FlybitsManager.Environment(rawValue: (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int) ?? 0) ?? .Production
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let newProjectID = projectID {
@@ -30,12 +30,14 @@ class SettingsViewController: UIViewController {
     }
 
     func updateEnvironmentTo(_ newEnvironment: FlybitsManager.Environment) {
-        guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.hashValue) else { return }
+        guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.rawValue) else { return }
         FlybitsManager.environment = newEnvironment
         UserDefaults.standard.set(newEnvironment.rawValue, forKey: AppDelegate.UserDefaultsKey.environment.rawValue)
+        UserDefaults.standard.synchronize()
     }
 
     // MARK: - Text field selector
+
     @objc func projectIDFieldDidChange(_ textField: UITextField) {
         projectID = textField.text
     }
@@ -56,6 +58,7 @@ extension SettingsViewController {
 }
 
 // MARK: - Table view
+
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.count
