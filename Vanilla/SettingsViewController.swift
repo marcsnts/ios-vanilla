@@ -75,20 +75,21 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.projectID.hashValue ? TextFieldCell.reuseID : CheckCell.reuseID,
                                                  for: indexPath)
-        cell.selectionStyle = .none
         switch indexPath.section {
         case Section.projectID.hashValue:
-            (cell as! TextFieldCell).textField.text = (UIApplication.shared.delegate as! AppDelegate).getFlybitsProjectID()
-            (cell as! TextFieldCell).textField.addTarget(self, action: #selector(projectIDFieldDidChange(_:)), for: .editingChanged)
+            if let textCell = cell as? TextFieldCell {
+                textCell.textField.text = (UIApplication.shared.delegate as! AppDelegate).getFlybitsProjectID()
+                textCell.textField.addTarget(self, action: #selector(projectIDFieldDidChange(_:)), for: .editingChanged)
+            }
         case Section.environment.hashValue:
-            (cell as! CheckCell).checkmarkImageView.tintColor = UINavigationBar.appearance().tintColor
-            if let environment = FlybitsManager.Environment(rawValue: indexPath.row) {
-                (cell as! CheckCell).titleLabel.text = environment.toString()
+            if let checkCell = cell as? CheckCell, let environment = FlybitsManager.Environment(rawValue: indexPath.row) {
+                checkCell.checkmarkImageView.tintColor = UINavigationBar.appearance().tintColor
+                checkCell.titleLabel.text = environment.toString()
                 if self.environment == environment {
-                    (cell as! CheckCell).isChecked = true
-                    lastCellChecked = cell as? CheckCell
+                    checkCell.isChecked = true
+                    lastCellChecked = checkCell
                 } else {
-                    (cell as! CheckCell).isChecked = false
+                    checkCell.isChecked = false
                 }
             }
         default:
