@@ -1,15 +1,15 @@
 //
-//  MenuItemModel.swift
+//  MenuItemContentData.swift
 //  Vanilla
 //
-//  Created by Marc Santos on 2017-09-28.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Created by Marc Santos on 2017-10-02.
+//  Copyright © Flybits Inc. All rights reserved.
 //
 
 import Foundation
 import FlybitsKernelSDK
 
-class MenuItemModel: ContentData {
+class MenuItemContentData: ContentData {
     var name: LocalizedObject<String>
     var calories: Int
     var price: Double
@@ -38,7 +38,7 @@ class MenuItemModel: ContentData {
 
 // MARK: - Content data property keys
 
-extension MenuItemModel {
+extension MenuItemContentData {
     enum Key: String {
         case name
         case calories

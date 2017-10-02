@@ -3,7 +3,7 @@
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-09-27.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © Flybits Inc. All rights reserved.
 //
 
 import UIKit
@@ -23,11 +23,11 @@ class ContentDataViewController: UIViewController {
     }
     var contentDataModel: ContentDataModel? {
         switch contentData {
-        case is ContactModel:
+        case is ContactContentData:
             return ContentDataModel.contact
-        case is MenuItemModel:
+        case is MenuItemContentData:
             return ContentDataModel.menuItem
-        case is RestaurantModel:
+        case is RestaurauntContentData:
             return ContentDataModel.restaurant
         default:
             return nil
@@ -92,7 +92,7 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
         var labelText: String?
         switch modelType {
         case .contact:
-            if let contactModel = data as? ContactModel {
+            if let contactModel = data as? ContactContentData {
                 switch section {
                 case 0:
                     if let profilePictureUrl = contactModel.profilePicture, let imageCell = imageCellFrom(profilePictureUrl) {
@@ -115,7 +115,7 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 }
             }
         case .menuItem:
-            if let menuItemModel = data as? MenuItemModel {
+            if let menuItemModel = data as? MenuItemContentData {
                 switch section {
                 case 0:
                     labelText = menuItemModel.name.value
@@ -134,7 +134,7 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 }
             }
         case .restaurant:
-            if let restaurauntModel = data as? RestaurantModel {
+            if let restaurauntModel = data as? RestaurauntContentData {
                 switch section {
                 case 0:
                     labelText = restaurauntModel.name

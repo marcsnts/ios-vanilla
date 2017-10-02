@@ -3,7 +3,7 @@
 //  VanillaTests
 //
 //  Created by Alex on 7/11/17.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © Flybits Inc. All rights reserved.
 //
 
 import XCTest

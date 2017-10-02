@@ -1,9 +1,9 @@
 //
-//  Content Templates.swift
+//  ContentTemplates.swift
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-09-28.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © Flybits Inc. All rights reserved.
 //
 
 import Foundation
