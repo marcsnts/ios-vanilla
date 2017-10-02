@@ -14,14 +14,14 @@ enum Template: String {
     case restaurant
 
     init?(fromId: String) {
-        if let matchingTemplate = Template.all.filter({$0.id() == fromId}).first {
+        if let matchingTemplate = Template.all.filter({$0.id == fromId}).first {
             self = matchingTemplate
         } else {
             return nil
         }
     }
 
-    func id() -> String {
+    var id: String {
         switch self {
         case .contact:
             return "E2306E5F-CED3-4927-8A64-58CD0E7E212E"
@@ -32,7 +32,7 @@ enum Template: String {
         }
     }
 
-    func title() -> String {
+    var title: String {
         switch self {
         case .contact:
             return "Contact"
@@ -43,7 +43,7 @@ enum Template: String {
         }
     }
 
-    func numberOfProperties() -> Int {
+    var numberOfProperties: Int {
         switch self {
         case .contact:
             return 7

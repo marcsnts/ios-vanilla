@@ -12,12 +12,9 @@ import FlybitsContextSDK
 class ContextViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let defaultCellReuseID = "DefaultCell"
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
 }
+
+// MARK: - Enumerations
 
 extension ContextViewController {
     enum Section: Int {
@@ -51,38 +48,7 @@ extension ContextViewController {
     }
 }
 
-extension ReservedContextPlugin {
-    static let all: [ReservedContextPlugin] = [.activity, .audio, .availability, .battery, .carrier, .coreLocation,
-                                               .eddystone, .iBeacon, .language, .network, .oAuth, .pedometerSteps]
-    func title() -> String {
-        switch self {
-        case .activity:
-            return "Activity"
-        case .audio:
-            return "Audio"
-        case .availability:
-            return "Availability"
-        case .battery:
-            return "Battery"
-        case .carrier:
-            return "Carrier"
-        case .coreLocation:
-            return "Core location"
-        case .eddystone:
-            return "Eddystone"
-        case .iBeacon:
-            return "iBeacon"
-        case .language:
-            return "Language"
-        case .network:
-            return "Network"
-        case .oAuth:
-            return "oAuth"
-        case .pedometerSteps:
-            return "Pedometer"
-        }
-    }
-}
+// MARK: - Table view
 
 extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -135,7 +101,7 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
         presentActionAlertFor(context)
     }
 
-    func presentActionAlertFor(_ context: CustomContext) {
+    private func presentActionAlertFor(_ context: CustomContext) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         let sendContextData: (WalletContextPlugin) -> Void = { wallet in
             _ = ContextDataRequest.sendData([wallet.toDictionary()], completion: { error in
@@ -168,5 +134,40 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Reserved context plugin support for sections
+
+extension ReservedContextPlugin {
+    static let all: [ReservedContextPlugin] = [.activity, .audio, .availability, .battery, .carrier, .coreLocation,
+                                               .eddystone, .iBeacon, .language, .network, .oAuth, .pedometerSteps]
+    func title() -> String {
+        switch self {
+        case .activity:
+            return "Activity"
+        case .audio:
+            return "Audio"
+        case .availability:
+            return "Availability"
+        case .battery:
+            return "Battery"
+        case .carrier:
+            return "Carrier"
+        case .coreLocation:
+            return "Core location"
+        case .eddystone:
+            return "Eddystone"
+        case .iBeacon:
+            return "iBeacon"
+        case .language:
+            return "Language"
+        case .network:
+            return "Network"
+        case .oAuth:
+            return "oAuth"
+        case .pedometerSteps:
+            return "Pedometer"
+        }
     }
 }
