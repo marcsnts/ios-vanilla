@@ -43,11 +43,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
             }
             print("Welcome back, \(user.firstname!)")
             print("User is connected. Will show relevant content.")
-            let contentVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
-            contentVc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(LogInViewController.logout(sender:)))
-            DispatchQueue.main.async {
-                self.show(contentVc, sender: self)
-            }
+            self.showContent()
         })
     }
     
@@ -108,12 +104,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     func showContent() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
         vc.navigationItem.hidesBackButton = true
-        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
+                                                              action: #selector(LogInViewController.logout(sender:)))
+        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(showContext))
         DispatchQueue.main.async {
             self.show(vc, sender: self)
         }
     }
-    
+
+    @objc func showContext() {
+        self.show(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Context"), sender: self)
+    }
+
     @objc func logout(sender: Any?) {
         _ = navigationController?.popViewController(animated: true)
         var flybitsManager = (UIApplication.shared.delegate as! AppDelegate).flybitsManager
