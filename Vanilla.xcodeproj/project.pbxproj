@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
-		4989FB0A1F7D774C00EE9A70 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB091F7D774C00EE9A70 /* ContactModel.swift */; };
-		4989FB0C1F7D77B000EE9A70 /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0B1F7D77B000EE9A70 /* MenuItemModel.swift */; };
-		4989FB0E1F7D77D500EE9A70 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0D1F7D77D500EE9A70 /* RestaurantModel.swift */; };
-		4989FB101F7D8AA900EE9A70 /* Content Templates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* Content Templates.swift */; };
+		4981EB741F8296BE00CEAF3F /* ContactContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB731F8296BE00CEAF3F /* ContactContentData.swift */; };
+		4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB751F8296E900CEAF3F /* MenuItemContentData.swift */; };
+		4981EB781F8296F900CEAF3F /* RestaurauntContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB771F8296F900CEAF3F /* RestaurauntContentData.swift */; };
+		4981EB7A1F8297A300CEAF3F /* LocationContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB791F8297A300CEAF3F /* LocationContentData.swift */; };
+		4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -24,7 +25,7 @@
 		49EDAECD1F759EE9003D501B /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAED31F75A1F1003D501B /* FlybitsProjectID.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49EDAED21F75A1F1003D501B /* FlybitsProjectID.plist */; };
 		FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46568F1F1C59CB00A13F72 /* Extensions.swift */; };
-		FA546D391F16B8A400038EDA /* Data Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA546D381F16B8A400038EDA /* Data Models.swift */; };
+		FA546D391F16B8A400038EDA /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA546D381F16B8A400038EDA /* DataModels.swift */; };
 		FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */; };
 		FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */; };
 		FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */; };
@@ -76,10 +77,11 @@
 /* Begin PBXFileReference section */
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
-		4989FB091F7D774C00EE9A70 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
-		4989FB0B1F7D77B000EE9A70 /* MenuItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
-		4989FB0D1F7D77D500EE9A70 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
-		4989FB0F1F7D8AA900EE9A70 /* Content Templates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Content Templates.swift"; sourceTree = "<group>"; };
+		4981EB731F8296BE00CEAF3F /* ContactContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactContentData.swift; sourceTree = "<group>"; };
+		4981EB751F8296E900CEAF3F /* MenuItemContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemContentData.swift; sourceTree = "<group>"; };
+		4981EB771F8296F900CEAF3F /* RestaurauntContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurauntContentData.swift; sourceTree = "<group>"; };
+		4981EB791F8297A300CEAF3F /* LocationContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentData.swift; sourceTree = "<group>"; };
+		4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTemplates.swift; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		49EDAEC21F759EE2003D501B /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		49EDAED21F75A1F1003D501B /* FlybitsProjectID.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FlybitsProjectID.plist; sourceTree = "<group>"; };
 		FA46568F1F1C59CB00A13F72 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FA47E4B71F1D9647002262EF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FA546D381F16B8A400038EDA /* Data Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data Models.swift"; sourceTree = "<group>"; };
+		FA546D381F16B8A400038EDA /* DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankingDataContextPlugin.swift; sourceTree = "<group>"; };
 		FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantContextPlugin.swift; sourceTree = "<group>"; };
 		FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
@@ -142,11 +144,12 @@
 		4989FB081F7D73E500EE9A70 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA546D381F16B8A400038EDA /* Data Models.swift */,
-				4989FB091F7D774C00EE9A70 /* ContactModel.swift */,
-				4989FB0B1F7D77B000EE9A70 /* MenuItemModel.swift */,
-				4989FB0D1F7D77D500EE9A70 /* RestaurantModel.swift */,
-				4989FB0F1F7D8AA900EE9A70 /* Content Templates.swift */,
+				FA546D381F16B8A400038EDA /* DataModels.swift */,
+				4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */,
+				4981EB731F8296BE00CEAF3F /* ContactContentData.swift */,
+				4981EB751F8296E900CEAF3F /* MenuItemContentData.swift */,
+				4981EB771F8296F900CEAF3F /* RestaurauntContentData.swift */,
+				4981EB791F8297A300CEAF3F /* LocationContentData.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -404,18 +407,19 @@
 				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
 				FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */,
 				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,
-				4989FB0C1F7D77B000EE9A70 /* MenuItemModel.swift in Sources */,
-				4989FB0E1F7D77D500EE9A70 /* RestaurantModel.swift in Sources */,
+				4981EB781F8296F900CEAF3F /* RestaurauntContentData.swift in Sources */,
 				494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */,
+				4981EB741F8296BE00CEAF3F /* ContactContentData.swift in Sources */,
 				FABE853A1F15633B00833B93 /* LogInViewController.swift in Sources */,
-				4989FB0A1F7D774C00EE9A70 /* ContactModel.swift in Sources */,
 				FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */,
 				4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */,
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
-				FA546D391F16B8A400038EDA /* Data Models.swift in Sources */,
-				4989FB101F7D8AA900EE9A70 /* Content Templates.swift in Sources */,
+				FA546D391F16B8A400038EDA /* DataModels.swift in Sources */,
+				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
+				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
 				FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */,
+				4981EB7A1F8297A300CEAF3F /* LocationContentData.swift in Sources */,
 				FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

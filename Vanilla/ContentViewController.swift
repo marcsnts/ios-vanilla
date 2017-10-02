@@ -36,9 +36,9 @@ class ContentViewController: UIViewController {
 
     func fetchRelevantContent() {
         let templateIDsAndClassModelsDictionary: [String: ContentData.Type] = [
-            Template.contact.id(): ContactModel.self,
-            Template.menuItem.id(): MenuItemModel.self,
-            Template.restaurant.id(): RestaurantModel.self
+            Template.contact.id(): ContactContentData.self,
+            Template.menuItem.id(): MenuItemContentData.self,
+            Template.restaurant.id(): RestaurauntContentData.self
         ]
 
         _ = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, completion: { pagedContent, error in

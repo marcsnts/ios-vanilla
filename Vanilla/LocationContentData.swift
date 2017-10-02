@@ -1,46 +1,15 @@
 //
-//  RestaurantModel.swift
+//  LocationContentData.swift
 //  Vanilla
 //
-//  Created by Marc Santos on 2017-09-28.
+//  Created by Marc Santos on 2017-10-02.
 //  Copyright © 2017 Alex. All rights reserved.
 //
 
 import Foundation
 import FlybitsKernelSDK
 
-class RestaurantModel: ContentData {
-    var name: String
-    var openingDate: Date
-    var numEmployees: Int
-    var location: LocationModel
-
-    required init?(responseData: Any) throws {
-        guard let representation = responseData as? [String: Any] else { throw ContentError.missingRepresentationDictionary }
-        guard let name = representation[Key.name.rawValue] as? String else { throw ContentError.missingProperty(Key.name.rawValue) }
-        guard let openingDate = representation[Key.openingDate.rawValue] as? String else { throw ContentError.missingProperty(Key.openingDate.rawValue) }
-        guard let numEmployees = representation[Key.location.rawValue] as? Int else { throw ContentError.missingProperty(Key.numberOfEmployees.rawValue) }
-        guard let location = representation[Key.location.rawValue] else { throw ContentError.missingProperty(Key.location.rawValue) }
-
-        self.name = name
-        self.openingDate = openingDate.toDate()!
-        self.numEmployees = numEmployees
-        try! self.location = LocationModel(responseData: location)!
-
-        try! super.init(responseData: responseData)
-    }
-}
-
-extension RestaurantModel {
-    enum Key: String {
-        case name
-        case openingDate
-        case numberOfEmployees = "numEmployees"
-        case location
-    }
-}
-
-class LocationModel: ContentData {
+class LocationContentData: ContentData {
     var city: String
     var postalCode: String
     var province: String
@@ -67,7 +36,7 @@ class LocationModel: ContentData {
 
 // MARK: - Content data property keys
 
-extension LocationModel {
+extension LocationContentData {
     enum Key: String {
         case city
         case postalCode = "postal"

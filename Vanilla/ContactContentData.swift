@@ -1,15 +1,15 @@
 //
-//  ContactModel.swift
+//  ContactContentData.swift
 //  Vanilla
 //
-//  Created by Marc Santos on 2017-09-28.
+//  Created by Marc Santos on 2017-10-02.
 //  Copyright © 2017 Alex. All rights reserved.
 //
 
 import Foundation
 import FlybitsKernelSDK
 
-class ContactModel: ContentData {
+class ContactContentData: ContentData {
     var firstName: String
     var lastName: String
     var dob: Date?
@@ -41,7 +41,7 @@ class ContactModel: ContentData {
 
 // MARK: - Content data property keys
 
-extension ContactModel {
+extension ContactContentData {
     enum Key: String {
         case firstName
         case lastName
