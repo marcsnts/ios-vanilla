@@ -11,11 +11,44 @@ import FlybitsContextSDK
 
 class ContextViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-
+    let defaultCellReuseID = "DefaultCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
+}
+
+extension ContextViewController {
+    enum Section: Int {
+        case sendCustomContext
+        case reservedContextPlugins
+
+        func numberOfRows() -> Int {
+            switch self {
+            case .sendCustomContext:
+                return 2
+            case .reservedContextPlugins:
+                return ReservedContextPlugin.all.count
+            }
+        }
+    }
+
+    enum CustomContext: Int {
+        case walletBalance
+        case walletCreditCard
+
+        func title() -> String {
+            switch self {
+            case .walletBalance:
+                return "Change the amount of money in the wallet"
+            case .walletCreditCard:
+                return "Change the credit card of the wallet"
+            }
+        }
+
+        static let all: [CustomContext] = [.walletBalance, .walletCreditCard]
+    }
 }
 
 extension ReservedContextPlugin {
@@ -57,35 +90,87 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        return section == 0 ? "Send custom context" : "Reserved Context Plugins"
+        return section == 0 ? "Send custom context" : "Reserved context plugins"
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ReservedContextPlugin.all.count
+        return section == Section.reservedContextPlugins.rawValue ? ReservedContextPlugin.all.count : CustomContext.all.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.row < ReservedContextPlugin.all.count else { return UITableViewCell() }
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: ToggleCell.reuseID, for: indexPath) as! ToggleCell
-        let contextPlugin = ReservedContextPlugin.all[indexPath.row]
-        cell.titleLabel.text = contextPlugin.title()
-        cell.action = { pluginIsOn in
-            if pluginIsOn {
-                ContextManager.shared.register(contextPlugin, refreshTime: 15, timeUnit: .seconds)
-            } else {
-                ContextManager.shared.remove(contextPlugin)
-            }
+        guard indexPath.row < (indexPath.section == Section.reservedContextPlugins.rawValue ? ReservedContextPlugin.all.count : CustomContext.all.count) else {
+            return UITableViewCell()
         }
-        
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.sendCustomContext.rawValue ? self.defaultCellReuseID :
+            ToggleCell.reuseID, for: indexPath)
+
+        switch indexPath.section {
+        case Section.sendCustomContext.rawValue:
+            if let customContext = CustomContext(rawValue: indexPath.row) {
+                cell.textLabel?.text = customContext.title()
+            }
+        case Section.reservedContextPlugins.rawValue:
+            if let toggleCell = cell as? ToggleCell {
+                let contextPlugin = ReservedContextPlugin.all[indexPath.row]
+                toggleCell.titleLabel.text = contextPlugin.title()
+                toggleCell.action = { pluginIsOn in
+                    if pluginIsOn {
+                        ContextManager.shared.register(contextPlugin, refreshTime: 15, timeUnit: .seconds)
+                    } else {
+                        ContextManager.shared.remove(contextPlugin)
+                    }
+                }
+            }
+        default:
+            break
+        }
+
         return cell
     }
-}
 
-class SendContextTextFieldCell: UITableViewCell {
-    static let reuseID = "SendContextCell"
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.section == Section.sendCustomContext.rawValue else { return }
+        guard let context = CustomContext(rawValue: indexPath.row) else { return }
+        presentActionAlertFor(context)
+    }
+
+    func presentActionAlertFor(_ context: CustomContext) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        var alertOkAction: ((UIAlertAction) -> Void)?
+        let sendContextData: (WalletContextPlugin) -> Void = { wallet in
+            _ = ContextDataRequest.sendData([wallet.toDictionary()], completion: { error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                print("Successfully uploaded context data")
+            }).execute()
+        }
+        switch context {
+        case .walletBalance:
+            alert.title = "Change wallet balance"
+            alert.message = "Enter the new balance"
+            alert.addTextField(configurationHandler: {$0.keyboardType = .numberPad})
+            alertOkAction = { _ in
+                if let newBalanceString = alert.textFields?.first?.text, let newBalance = Double(newBalanceString) {
+                    sendContextData(WalletContextPlugin(hasCreditCard: nil, money: newBalance))
+                }
+            }
+        case .walletCreditCard:
+            alert.title = "Change wallet has credit card"
+            alert.message = "Select the new status"
+            alert.addAction(UIAlertAction(title: "True", style: .default, handler: { _ in
+                sendContextData(WalletContextPlugin(hasCreditCard: true, money: nil))
+            }))
+            alert.addAction(UIAlertAction(title: "False", style: .default, handler: { _ in
+                sendContextData(WalletContextPlugin(hasCreditCard: false, money: nil))
+            }))
+        }
+
+        alert.addAction(UIAlertAction(title: context != .walletCreditCard ? "Ok" : "Cancel", style: .default, handler: alertOkAction))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 class ToggleCell: UITableViewCell {

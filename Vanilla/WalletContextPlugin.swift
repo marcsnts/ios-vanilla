@@ -25,13 +25,19 @@ class WalletContextPlugin: NSObject, ContextPlugin, DictionaryConvertible {
     }
 
     func toDictionary() -> [String : Any] {
-        var dictionary = [String: Any]()
+        var dictionary: [String: Any] = [
+            "dataTypeID": pluginID,
+            "timestamp": NSNumber(value: Int64(Date().timeIntervalSince1970))
+        ]
+        var valueDictionary = [String: Any]()
         if let hasCreditCard = self.hasCreditCard {
-            dictionary["creditCard"] = hasCreditCard
+            valueDictionary["creditCard"] = hasCreditCard
         }
         if let money = self.money {
-            dictionary["money"] = money
+            valueDictionary["money"] = money
         }
+        dictionary["value"] = valueDictionary
+
         return dictionary
     }
 
