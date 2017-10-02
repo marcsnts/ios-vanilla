@@ -14,7 +14,17 @@ class SettingsViewController: UIViewController {
     var projectID: String?
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
-    var environment = FlybitsManager.Environment(rawValue: (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int) ?? 0) ?? .Production
+    var environment = FlybitsManager.environment
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Search user defaults if environment exists and use that
+        if let environmentRawValue = UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int {
+            if let environment = FlybitsManager.Environment(rawValue: environmentRawValue) {
+                self.environment = environment
+            }
+        }
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -65,7 +75,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == Section.projectID.hashValue ? 1 : 4
+        return section == Section.projectID.hashValue ? 1 : FlybitsManager.Environment.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -125,6 +135,8 @@ extension FlybitsManager.Environment {
             return "Staging"
         }
     }
+
+    static let count = 4
 }
 
 // MARK: - Settings table view cells
