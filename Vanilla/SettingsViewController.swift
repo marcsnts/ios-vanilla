@@ -3,52 +3,28 @@
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-09-25.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © Flybits Inc. All rights reserved.
 //
 
 import UIKit
-import FlybitsSDK
+import FlybitsContextSDK
 
 class SettingsViewController: UIViewController {
-    enum Section {
-        case projectID, environment
-
-        var title: String {
-            return self == .projectID ? "Project id" : "Environment"
-        }
-        static let count = 2
-    }
-
-    enum Environment: String {
-        // Order (hash value) corresponds to Flybits environment raw values
-        case production = "Production",
-        productionEurope = "Production Europe",
-        staging = "Staging",
-        development = "Development"
-
-        init?(hashValue: Int) {
-            switch hashValue {
-            case 0:
-                self = .production
-            case 1:
-                self = .productionEurope
-            case 2:
-                self = .staging
-            case 3:
-                self = .development
-            default:
-                return nil
-            }
-         }
-
-        static let all = [Environment.production, Environment.productionEurope, Environment.development, Environment.staging]
-    }
-
     @IBOutlet weak var tableView: UITableView!
     var projectID: String?
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
-    var environment: Environment = Environment(hashValue: (UserDefaults.standard.value(forKey: UserDefaultKey.environment.rawValue) as? Int) ?? 0) ?? .production
+    var environment = FlybitsManager.environment
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Search user defaults if environment exists and use that
+        if let environmentRawValue = UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int {
+            if let environment = FlybitsManager.Environment(rawValue: environmentRawValue) {
+                self.environment = environment
+            }
+        }
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -59,31 +35,47 @@ class SettingsViewController: UIViewController {
     }
 
     func updateProjectIDTo(_ newID: String) {
-        UserDefaults.standard.set(newID, forKey: UserDefaultKey.projectID.rawValue)
+        UserDefaults.standard.set(newID, forKey: AppDelegate.UserDefaultsKey.projectID.rawValue)
         (UIApplication.shared.delegate as! AppDelegate).projectID = newID
     }
 
-    func updateEnvironmentTo(_ newEnvironment: Environment) {
-        guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.hashValue) else { return }
+    func updateEnvironmentTo(_ newEnvironment: FlybitsManager.Environment) {
+        guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.rawValue) else { return }
         FlybitsManager.environment = newEnvironment
-        UserDefaults.standard.set(newEnvironment.hashValue, forKey: UserDefaultKey.environment.rawValue)
+        UserDefaults.standard.set(newEnvironment.rawValue, forKey: AppDelegate.UserDefaultsKey.environment.rawValue)
+        UserDefaults.standard.synchronize()
     }
 
     // MARK: - Text field selector
+
     @objc func projectIDFieldDidChange(_ textField: UITextField) {
         projectID = textField.text
     }
 }
 
+// MARK: - Enumerations
+
+extension SettingsViewController {
+    enum Section {
+        case projectID
+        case environment
+
+        var title: String {
+            return self == .projectID ? "Project id" : "Environment"
+        }
+        static let count = 2
+    }
+}
 
 // MARK: - Table view
+
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == Section.projectID.hashValue ? 1 : Environment.all.count
+        return section == Section.projectID.hashValue ? 1 : FlybitsManager.Environment.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -93,20 +85,22 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.projectID.hashValue ? TextFieldCell.reuseID : CheckCell.reuseID,
                                                  for: indexPath)
-        cell.selectionStyle = .none
         switch indexPath.section {
         case Section.projectID.hashValue:
-            (cell as! TextFieldCell).textField.text = (UIApplication.shared.delegate as! AppDelegate).getFlybitsProjectID()
-            (cell as! TextFieldCell).textField.addTarget(self, action: #selector(projectIDFieldDidChange(_:)), for: .editingChanged)
+            if let textCell = cell as? TextFieldCell {
+                textCell.textField.text = (UIApplication.shared.delegate as! AppDelegate).getFlybitsProjectID()
+                textCell.textField.addTarget(self, action: #selector(projectIDFieldDidChange(_:)), for: .editingChanged)
+            }
         case Section.environment.hashValue:
-            (cell as! CheckCell).checkmarkImageView.tintColor = UINavigationBar.appearance().tintColor
-            let environment = Environment.all[indexPath.row]
-            (cell as! CheckCell).titleLabel.text = environment.rawValue
-            if self.environment == environment {
-                (cell as! CheckCell).isChecked = true
-                lastCellChecked = cell as? CheckCell
-            } else {
-                (cell as! CheckCell).isChecked = false
+            if let checkCell = cell as? CheckCell, let environment = FlybitsManager.Environment(rawValue: indexPath.row) {
+                checkCell.checkmarkImageView.tintColor = UINavigationBar.appearance().tintColor
+                checkCell.titleLabel.text = environment.toString()
+                if self.environment == environment {
+                    checkCell.isChecked = true
+                    lastCellChecked = checkCell
+                } else {
+                    checkCell.isChecked = false
+                }
             }
         default:
             break
@@ -121,11 +115,28 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         lastCellChecked?.isChecked = false
         let cell = tableView.cellForRow(at: indexPath) as! CheckCell
         cell.isChecked = !cell.isChecked
-        if let environmentString = cell.titleLabel.text, let environment = Environment(rawValue: environmentString) {
+        if let environment = FlybitsManager.Environment(rawValue: indexPath.row) {
             self.environment = environment
         }
         lastCellChecked = cell
     }
+}
+
+extension FlybitsManager.Environment {
+    func toString() -> String {
+        switch self {
+        case .Development:
+            return "Development"
+        case .Production:
+            return "Production"
+        case .Production_Europe:
+            return "Production Europe"
+        case .Staging:
+            return "Staging"
+        }
+    }
+
+    static let count = 4
 }
 
 // MARK: - Settings table view cells

@@ -1,0 +1,79 @@
+//
+//  TextOnlyContent.swift
+//  Vanilla
+//
+//  Created by Alex on 7/12/17.
+//  Copyright © Flybits Inc. All rights reserved.
+//
+
+import FlybitsKernelSDK
+
+enum ContentError: Error {
+    case missingRepresentationDictionary
+    case missingLocalizationsDictionary
+    case missingProperty(String)
+    case dataMismatch(String)
+    case deserializationError(String)
+}
+
+struct Constant {
+    static let textTitle = "txtTitle"
+    static let textDescription = "txtDescription"
+    static let imageURL = "img"
+    static let localizations = "localizations"
+}
+
+class TextOnlyContent: ContentData {
+    let textTitle: LocalizedObject<String>
+    let textDescription: LocalizedObject<String>
+    
+    required init?(responseData: Any) throws {
+        guard let representation = responseData as? [String: Any] else {
+            throw ContentError.missingRepresentationDictionary
+        }
+        guard let localizations = representation[Constant.localizations] as? [String: [String: Any]] else {
+            throw ContentError.missingLocalizationsDictionary
+        }
+        self.textTitle = LocalizedObject<String>(key: Constant.textTitle, localizations: localizations)
+        self.textDescription = LocalizedObject<String>(key: Constant.textDescription, localizations: localizations)
+        try! super.init(responseData: responseData)
+    }
+}
+
+class ImageOnlyContent: ContentData {
+    let imageURL: URL
+    
+    required init?(responseData: Any) throws {
+        guard let representation = responseData as? [String: Any] else {
+            throw ContentError.missingRepresentationDictionary
+        }
+        guard let url = URL(string: representation[Constant.imageURL] as! String) else {
+            throw ContentError.dataMismatch("String to URL")
+        }
+        self.imageURL = url
+        try! super.init(responseData: responseData)
+    }
+}
+
+class MixedContent: ContentData {
+    let textTitle: LocalizedObject<String>
+    let textDescription: LocalizedObject<String>
+    let imageURL: URL
+    
+    required init?(responseData: Any) throws {
+        guard let representation = responseData as? [String: Any] else {
+            throw ContentError.missingRepresentationDictionary
+        }
+        guard let localizations = representation[Constant.localizations] as? [String: [String: Any]] else {
+            throw ContentError.missingLocalizationsDictionary
+        }
+        self.textTitle = LocalizedObject<String>(key: Constant.textTitle, localizations: localizations)
+        self.textDescription = LocalizedObject<String>(key: Constant.textDescription, localizations: localizations)
+        
+        guard let url = URL(string: representation[Constant.imageURL] as! String) else {
+            throw ContentError.dataMismatch("String to URL")
+        }
+        self.imageURL = url
+        try! super.init(responseData: responseData)
+    }
+}

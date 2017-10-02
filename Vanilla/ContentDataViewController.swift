@@ -3,30 +3,13 @@
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-09-27.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © Flybits Inc. All rights reserved.
 //
 
 import UIKit
 import FlybitsKernelSDK
 
 class ContentDataViewController: UIViewController {
-    enum ContentDataModel {
-        case contact,
-        menuItem,
-        restaurant
-
-        func sectionTitles() -> [String] {
-            switch self {
-            case .contact:
-                return ["Profile picture", "First name", "Last name", "Date of birth", "Company", "Email", "Phone number"]
-            case .menuItem:
-                return ["Name", "Price", "Calories", "Ingredients", "Image"]
-            case .restaurant:
-                return ["Name", "Date of opening", "Number of employees", "Country", "Province", "City", "Address", "Postal code"]
-            }
-        }
-    }
-
     @IBOutlet weak var tableView: UITableView!
     let labelCellReuseID = "DefaultCell"
     var contentData: ContentData? {
@@ -40,14 +23,35 @@ class ContentDataViewController: UIViewController {
     }
     var contentDataModel: ContentDataModel? {
         switch contentData {
-        case is ContactModel:
+        case is ContactContentData:
             return ContentDataModel.contact
-        case is MenuItemModel:
+        case is MenuItemContentData:
             return ContentDataModel.menuItem
-        case is RestaurantModel:
+        case is RestaurauntContentData:
             return ContentDataModel.restaurant
         default:
             return nil
+        }
+    }
+}
+
+// MARK: - Enumerations
+
+extension ContentDataViewController {
+    enum ContentDataModel {
+        case contact
+        case menuItem
+        case restaurant
+
+        func sectionTitles() -> [String] {
+            switch self {
+            case .contact:
+                return ["Profile picture", "First name", "Last name", "Date of birth", "Company", "Email", "Phone number"]
+            case .menuItem:
+                return ["Name", "Price", "Calories", "Ingredients", "Image"]
+            case .restaurant:
+                return ["Name", "Date of opening", "Number of employees", "Country", "Province", "City", "Address", "Postal code"]
+            }
         }
     }
 }
@@ -73,19 +77,23 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 return UITableViewCell()
         }
 
+        return cellFor(modelType: contentType, data: contentData, section: indexPath.section)
+    }
+
+    private func cellFor(modelType: ContentDataModel, data: ContentData, section: Int) -> UITableViewCell {
         let imageCellFrom: (URL) -> UITableViewCell? = { imageUrl in
             guard let data = try? Data(contentsOf: imageUrl) else { return nil }
 
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseID, for: indexPath) as! ImageCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseID) as! ImageCell
             cell.imgView.image = UIImage(data: data)
             return cell
         }
 
         var labelText: String?
-        switch contentType {
+        switch modelType {
         case .contact:
-            if let contactModel = contentData as? ContactModel {
-                switch indexPath.section {
+            if let contactModel = data as? ContactContentData {
+                switch section {
                 case 0:
                     if let profilePictureUrl = contactModel.profilePicture, let imageCell = imageCellFrom(profilePictureUrl) {
                         return imageCell
@@ -107,8 +115,8 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 }
             }
         case .menuItem:
-            if let menuItemModel = contentData as? MenuItemModel {
-                switch indexPath.section {
+            if let menuItemModel = data as? MenuItemContentData {
+                switch section {
                 case 0:
                     labelText = menuItemModel.name.value
                 case 1:
@@ -126,8 +134,8 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
                 }
             }
         case .restaurant:
-            if let restaurauntModel = contentData as? RestaurantModel {
-                switch indexPath.section {
+            if let restaurauntModel = data as? RestaurauntContentData {
+                switch section {
                 case 0:
                     labelText = restaurauntModel.name
                 case 1:
@@ -150,7 +158,7 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
             }
         }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: labelCellReuseID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: labelCellReuseID)!
         cell.textLabel?.text = labelText
 
         return cell
