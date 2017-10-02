@@ -137,7 +137,6 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
 
     func presentActionAlertFor(_ context: CustomContext) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        var alertOkAction: ((UIAlertAction) -> Void)?
         let sendContextData: (WalletContextPlugin) -> Void = { wallet in
             _ = ContextDataRequest.sendData([wallet.toDictionary()], completion: { error in
                 guard error == nil else {
@@ -152,11 +151,11 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
             alert.title = "Change wallet balance"
             alert.message = "Enter the new balance"
             alert.addTextField(configurationHandler: {$0.keyboardType = .numberPad})
-            alertOkAction = { _ in
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
                 if let newBalanceString = alert.textFields?.first?.text, let newBalance = Double(newBalanceString) {
                     sendContextData(WalletContextPlugin(hasCreditCard: nil, money: newBalance))
                 }
-            }
+            }))
         case .walletCreditCard:
             alert.title = "Change wallet has credit card"
             alert.message = "Select the new status"
@@ -168,18 +167,6 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
             }))
         }
 
-        alert.addAction(UIAlertAction(title: context != .walletCreditCard ? "Ok" : "Cancel", style: .default, handler: alertOkAction))
         self.present(alert, animated: true, completion: nil)
-    }
-}
-
-class ToggleCell: UITableViewCell {
-    static let reuseID = "ToggleCell"
-    var action: ((Bool) -> Void)?
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var toggle: UISwitch!
-    @IBAction func toggleDidChange(_ sender: Any) {
-        guard let action = self.action else { return }
-        action(toggle.isOn)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */; };
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
 		4981EB6A1F827A7300CEAF3F /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB691F827A7300CEAF3F /* ContextViewController.swift */; };
@@ -78,6 +79,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
 		4981EB691F827A7300CEAF3F /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				FABE85071F154BA700833B93 /* Vanilla.entitlements */,
 				FABE84D71F151CD900833B93 /* AppDelegate.swift */,
+				4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */,
 				FA7556B71F17FDCE00D8751A /* Log In / Register */,
 				FA7556B81F17FDE600D8751A /* Content */,
 				FA7556B61F17FD9300D8751A /* Context Data */,
@@ -426,6 +429,7 @@
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
 				FA546D391F16B8A400038EDA /* DataModels.swift in Sources */,
 				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
+				4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */,
 				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
 				4981EB6E1F82885700CEAF3F /* WalletContextPlugin.swift in Sources */,
