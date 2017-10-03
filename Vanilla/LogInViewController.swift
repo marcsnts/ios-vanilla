@@ -82,7 +82,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let projectID = appDelegate.projectID!
-        let autoRegister = (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.autoRegister.rawValue) as? Bool) ?? false
+        let autoRegister = UserDefaults.standard.getAutoRegister()
         let scopes = autoRegister ? appDelegate.autoRegisterScopes : appDelegate.scopes
         let flybitsManager = FlybitsManager(projectID: projectID, idProvider: flybitsIDP, scopes: scopes)
         (UIApplication.shared.delegate as! AppDelegate).flybitsManager = flybitsManager

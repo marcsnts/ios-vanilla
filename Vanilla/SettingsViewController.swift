@@ -15,15 +15,13 @@ class SettingsViewController: UIViewController {
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
     var environment = FlybitsManager.environment
-    lazy var autoRegister: Bool = (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.autoRegister.rawValue) as? Bool) ?? false
+    lazy var autoRegister: Bool = UserDefaults.standard.getAutoRegister()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Search user defaults if environment exists and use that
-        if let environmentRawValue = UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int {
-            if let environment = FlybitsManager.Environment(rawValue: environmentRawValue) {
-                self.environment = environment
-            }
+        if let environmentRawValue = UserDefaults.standard.getEnvironment(), let environment = FlybitsManager.Environment(rawValue: environmentRawValue) {
+            self.environment = environment
         }
     }
 
@@ -34,6 +32,7 @@ class SettingsViewController: UIViewController {
         }
         updateEnvironmentTo(environment)
         updateAutoRegisterTo(autoRegister)
+        UserDefaults.standard.synchronize()
     }
 
     func updateProjectIDTo(_ newID: String) {
@@ -45,7 +44,6 @@ class SettingsViewController: UIViewController {
         guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.rawValue) else { return }
         FlybitsManager.environment = newEnvironment
         UserDefaults.standard.set(newEnvironment.rawValue, forKey: AppDelegate.UserDefaultsKey.environment.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func updateAutoRegisterTo(_ newAutoRegister: Bool) {

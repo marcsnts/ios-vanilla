@@ -12,6 +12,7 @@ import FlybitsContextSDK
 class ContextViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let defaultCellReuseID = "DefaultCell"
+    let autoRegisterEnabled = UserDefaults.standard.getAutoRegister()
 }
 
 // MARK: - Enumerations
@@ -20,6 +21,8 @@ extension ContextViewController {
     enum Section: Int {
         case sendCustomContext
         case reservedContextPlugins
+
+        static let count = 2
     }
 
     enum CustomContext: Int {
@@ -43,7 +46,7 @@ extension ContextViewController {
 
 extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return autoRegisterEnabled ? 1 : Section.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -78,6 +81,7 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
                         ContextManager.shared.remove(contextPlugin)
                     }
                 }
+                toggleCell.toggle.isOn = false
             }
         default:
             break

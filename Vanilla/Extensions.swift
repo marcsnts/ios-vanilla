@@ -29,3 +29,23 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+
+extension UserDefaults {
+    enum Key: String {
+        case environment
+        case projectID
+        case autoRegister
+    }
+
+    func getEnvironment() -> Int? {
+        return value(forKey: Key.environment.rawValue) as? Int
+    }
+
+    func getProjectID() -> String? {
+        return value(forKey: Key.projectID.rawValue) as? String
+    }
+
+    func getAutoRegister() -> Bool {
+        return (value(forKey: Key.autoRegister.rawValue) as? Bool) ?? false
+    }
+}
