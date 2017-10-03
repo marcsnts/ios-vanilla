@@ -17,7 +17,6 @@ protocol UserLogInDelegate: class {
 }
 
 class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDelegate {
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
@@ -83,11 +82,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let projectID = appDelegate.projectID!
-        let scopes = appDelegate.scopes
-    
+        let autoRegister = (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.autoRegister.rawValue) as? Bool) ?? false
+        let scopes = autoRegister ? appDelegate.autoRegisterScopes : appDelegate.scopes
         let flybitsManager = FlybitsManager(projectID: projectID, idProvider: flybitsIDP, scopes: scopes)
         (UIApplication.shared.delegate as! AppDelegate).flybitsManager = flybitsManager
-        
+
         // Returns a cancellable request like all of our other requests. We disregard as we probably don't care to cancel here.
         _ = flybitsManager.connect { user, error in
             guard let user = user, error == nil else {

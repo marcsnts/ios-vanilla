@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
     var environment = FlybitsManager.environment
+    lazy var autoRegister: Bool = (UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.autoRegister.rawValue) as? Bool) ?? false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class SettingsViewController: UIViewController {
             updateProjectIDTo(newProjectID)
         }
         updateEnvironmentTo(environment)
+        updateAutoRegisterTo(autoRegister)
     }
 
     func updateProjectIDTo(_ newID: String) {
@@ -44,6 +46,10 @@ class SettingsViewController: UIViewController {
         FlybitsManager.environment = newEnvironment
         UserDefaults.standard.set(newEnvironment.rawValue, forKey: AppDelegate.UserDefaultsKey.environment.rawValue)
         UserDefaults.standard.synchronize()
+    }
+
+    func updateAutoRegisterTo(_ newAutoRegister: Bool) {
+        UserDefaults.standard.set(newAutoRegister, forKey: AppDelegate.UserDefaultsKey.autoRegister.rawValue)
     }
 
     // MARK: - Text field selector
@@ -125,7 +131,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case Section.autoRegister.rawValue:
             if let toggleCell = cell as? ToggleCell {
                 toggleCell.titleLabel.text = "Enable auto register plugins"
-                toggleCell.action = nil
+                toggleCell.toggle.isOn = self.autoRegister
+                toggleCell.action = { self.autoRegister = $0 }
             }
         default:
             break

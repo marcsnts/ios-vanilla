@@ -8,6 +8,7 @@
 
 import UIKit
 import FlybitsKernelSDK
+import UserNotifications
 
 class ContentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +32,25 @@ class ContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerRemoteNotifications()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchRelevantContent()
+    }
+
+    func registerRemoteNotifications() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+        }
+        UIApplication.shared.registerForRemoteNotifications()
     }
 
     func fetchRelevantContent() {

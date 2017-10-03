@@ -20,22 +20,13 @@ extension ContextViewController {
     enum Section: Int {
         case sendCustomContext
         case reservedContextPlugins
-
-        func numberOfRows() -> Int {
-            switch self {
-            case .sendCustomContext:
-                return 2
-            case .reservedContextPlugins:
-                return ReservedContextPlugin.all.count
-            }
-        }
     }
 
     enum CustomContext: Int {
         case walletBalance
         case walletCreditCard
 
-        func title() -> String {
+        var title: String {
             switch self {
             case .walletBalance:
                 return "Change the amount of money in the wallet"
@@ -74,12 +65,12 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case Section.sendCustomContext.rawValue:
             if let customContext = CustomContext(rawValue: indexPath.row) {
-                cell.textLabel?.text = customContext.title()
+                cell.textLabel?.text = customContext.title
             }
         case Section.reservedContextPlugins.rawValue:
             if let toggleCell = cell as? ToggleCell {
                 let contextPlugin = ReservedContextPlugin.all[indexPath.row]
-                toggleCell.titleLabel.text = contextPlugin.title()
+                toggleCell.titleLabel.text = contextPlugin.title
                 toggleCell.action = { pluginIsOn in
                     if pluginIsOn {
                         ContextManager.shared.register(contextPlugin, refreshTime: 15, timeUnit: .seconds)
@@ -142,7 +133,7 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
 extension ReservedContextPlugin {
     static let all: [ReservedContextPlugin] = [.activity, .audio, .availability, .battery, .carrier, .coreLocation,
                                                .eddystone, .iBeacon, .language, .network, .oAuth, .pedometerSteps]
-    func title() -> String {
+    var title: String {
         switch self {
         case .activity:
             return "Activity"
