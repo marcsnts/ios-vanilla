@@ -15,28 +15,34 @@ class WalletContextPlugin: NSObject, ContextPlugin, DictionaryConvertible {
     var timeUnit: TimeUnit = .seconds
 
     // Plugin Attributes
-    var hasCreditCard: Bool?
-    var money: Double?
+    var balance: Double?
+    var containsPhotoId: Bool?
+    var owner: String?
 
-    init(hasCreditCard: Bool?, money: Double?) {
-        self.hasCreditCard = hasCreditCard
-        self.money = money
+    init(balance: Double?, containsPhotoId: Bool?, owner: String?) {
+        self.balance = balance
+        self.containsPhotoId = containsPhotoId
+        self.owner = owner
         super.init()
     }
 
     func toDictionary() -> [String : Any] {
-        var dictionary: [String: Any] = [
-            "dataTypeID": pluginID,
-            "timestamp": NSNumber(value: Int64(Date().timeIntervalSince1970))
-        ]
         var valueDictionary = [String: Any]()
-        if let hasCreditCard = self.hasCreditCard {
-            valueDictionary["creditCard"] = hasCreditCard
+        if let balance = self.balance {
+            valueDictionary["balance"] = balance
         }
-        if let money = self.money {
-            valueDictionary["money"] = money
+        if let containsPhotoId = self.containsPhotoId {
+            valueDictionary["containsPhotoId"] = containsPhotoId
         }
-        dictionary["value"] = valueDictionary
+        if let owner = self.owner {
+            valueDictionary["owner"] = owner
+        }
+
+        let dictionary: [String: Any] = [
+            "dataTypeID": pluginID,
+            "timestamp": NSNumber(value: Int64(Date().timeIntervalSince1970)),
+            "value": valueDictionary
+        ]
 
         return dictionary
     }

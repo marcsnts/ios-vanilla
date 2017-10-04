@@ -19,26 +19,31 @@ class ContextViewController: UIViewController {
 
 extension ContextViewController {
     enum Section: Int {
-        case sendCustomContext
+        case customContextPlugins
         case reservedContextPlugins
+
+        var title: String {
+            switch self {
+            case .customContextPlugins:
+                return "Custom context plugins"
+            case .reservedContextPlugins:
+                return "Reserved context plugins"
+            }
+        }
 
         static let count = 2
     }
 
     enum CustomContext: Int {
-        case walletBalance
-        case walletCreditCard
+        case wallet
 
         var title: String {
-            switch self {
-            case .walletBalance:
-                return "Change the amount of money in the wallet"
-            case .walletCreditCard:
-                return "Change the credit card of the wallet"
+            switch self{
+            case .wallet:
+                return "Wallet"
             }
         }
-
-        static let all: [CustomContext] = [.walletBalance, .walletCreditCard]
+        static let all: [CustomContext] = [wallet]
     }
 }
 
@@ -46,11 +51,11 @@ extension ContextViewController {
 
 extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return autoRegisterEnabled ? 1 : Section.count
+        return Section.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Send custom context" : "Reserved context plugins"
+        return section < Section.count ? Section(rawValue: section)?.title : nil
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,11 +67,11 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.sendCustomContext.rawValue ? self.defaultCellReuseID :
+        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.customContextPlugins.rawValue ? self.defaultCellReuseID :
             ToggleCell.reuseID, for: indexPath)
 
         switch indexPath.section {
-        case Section.sendCustomContext.rawValue:
+        case Section.customContextPlugins.rawValue:
             if let customContext = CustomContext(rawValue: indexPath.row) {
                 cell.textLabel?.text = customContext.title
             }
@@ -91,44 +96,10 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.section == Section.sendCustomContext.rawValue else { return }
-        guard let context = CustomContext(rawValue: indexPath.row) else { return }
-        presentActionAlertFor(context)
-    }
-
-    private func presentActionAlertFor(_ context: CustomContext) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        let sendContextData: (WalletContextPlugin) -> Void = { wallet in
-            _ = ContextDataRequest.sendData([wallet.toDictionary()], completion: { error in
-                guard error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                print("Successfully uploaded context data")
-            }).execute()
-        }
-        switch context {
-        case .walletBalance:
-            alert.title = "Change wallet balance"
-            alert.message = "Enter the new balance"
-            alert.addTextField(configurationHandler: {$0.keyboardType = .numberPad})
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                if let newBalanceString = alert.textFields?.first?.text, let newBalance = Double(newBalanceString) {
-                    sendContextData(WalletContextPlugin(hasCreditCard: nil, money: newBalance))
-                }
-            }))
-        case .walletCreditCard:
-            alert.title = "Change wallet has credit card"
-            alert.message = "Select the new status"
-            alert.addAction(UIAlertAction(title: "True", style: .default, handler: { _ in
-                sendContextData(WalletContextPlugin(hasCreditCard: true, money: nil))
-            }))
-            alert.addAction(UIAlertAction(title: "False", style: .default, handler: { _ in
-                sendContextData(WalletContextPlugin(hasCreditCard: false, money: nil))
-            }))
-        }
-
-        self.present(alert, animated: true, completion: nil)
+        guard indexPath.section == Section.customContextPlugins.rawValue else { return }
+        let contextVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContextPlugin") as! ContextPluginViewController
+        contextVc.title = "Wallet"
+        self.show(contextVc, sender: self)
     }
 }
 

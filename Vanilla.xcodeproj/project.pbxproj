@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */; };
+		494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C48681F841B960000A16E /* ContextPluginViewController.swift */; };
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
 		4981EB6A1F827A7300CEAF3F /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB691F827A7300CEAF3F /* ContextViewController.swift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
+		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
 		4981EB691F827A7300CEAF3F /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4984146D1F852F7100F0E52D /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */,
+				FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */,
+				4981EB6D1F82885700CEAF3F /* WalletContextPlugin.swift */,
+				4981EB6F1F8288B100CEAF3F /* CustomPlugin.swift */,
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
 		4989FB081F7D73E500EE9A70 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,12 +178,10 @@
 		FA7556B61F17FD9300D8751A /* Context Data */ = {
 			isa = PBXGroup;
 			children = (
+				4984146D1F852F7100F0E52D /* Plugins */,
 				FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */,
-				FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */,
-				FA7556B41F17FD8B00D8751A /* RestaurantContextPlugin.swift */,
 				4981EB691F827A7300CEAF3F /* ContextViewController.swift */,
-				4981EB6D1F82885700CEAF3F /* WalletContextPlugin.swift */,
-				4981EB6F1F8288B100CEAF3F /* CustomPlugin.swift */,
+				494C48681F841B960000A16E /* ContextPluginViewController.swift */,
 			);
 			name = "Context Data";
 			sourceTree = "<group>";
@@ -431,6 +442,7 @@
 				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
 				4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */,
 				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,
+				494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
 				4981EB6E1F82885700CEAF3F /* WalletContextPlugin.swift in Sources */,
 				4981EB701F8288B100CEAF3F /* CustomPlugin.swift in Sources */,
