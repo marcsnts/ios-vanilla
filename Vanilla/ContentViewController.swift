@@ -12,6 +12,8 @@ import UserNotifications
 
 class ContentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    lazy var refreshControl = UIRefreshControl()
+
     var contents = [Content]() {
         didSet {
             DispatchQueue.main.async {
@@ -33,11 +35,27 @@ class ContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerRemoteNotifications()
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(fetchRelevantContent), for: .valueChanged)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchRelevantContent()
+    }
+
+    func setupPullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Retrieving relevant content...")
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(fetchRelevantContent), for: .valueChanged)
     }
 
     func registerRemoteNotifications() {
@@ -53,7 +71,7 @@ class ContentViewController: UIViewController {
         UIApplication.shared.registerForRemoteNotifications()
     }
 
-    func fetchRelevantContent() {
+    @objc func fetchRelevantContent() {
         let templateIDsAndClassModelsDictionary: [String: ContentData.Type] = [
             Template.contact.id: ContactContentData.self,
             Template.menuItem.id: MenuItemContentData.self,
@@ -61,6 +79,13 @@ class ContentViewController: UIViewController {
         ]
 
         _ = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, completion: { pagedContent, error in
+            defer {
+                DispatchQueue.main.async {
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
+            }
             guard let pagedContent = pagedContent, error == nil else {
                 return
             }
