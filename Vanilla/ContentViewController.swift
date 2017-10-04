@@ -35,12 +35,7 @@ class ContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerRemoteNotifications()
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-        refreshControl.addTarget(self, action: #selector(fetchRelevantContent), for: .valueChanged)
+        setupPullToRefresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
