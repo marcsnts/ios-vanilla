@@ -15,14 +15,13 @@ class SettingsViewController: UIViewController {
     let defaultCellReuseID = "DefaultCell"
     var lastCellChecked: CheckCell?
     var environment = FlybitsManager.environment
+    lazy var autoRegister: Bool = UserDefaults.standard.getAutoRegister()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Search user defaults if environment exists and use that
-        if let environmentRawValue = UserDefaults.standard.value(forKey: AppDelegate.UserDefaultsKey.environment.rawValue) as? Int {
-            if let environment = FlybitsManager.Environment(rawValue: environmentRawValue) {
-                self.environment = environment
-            }
+        if let environmentRawValue = UserDefaults.standard.getEnvironment(), let environment = FlybitsManager.Environment(rawValue: environmentRawValue) {
+            self.environment = environment
         }
     }
 
@@ -32,6 +31,8 @@ class SettingsViewController: UIViewController {
             updateProjectIDTo(newProjectID)
         }
         updateEnvironmentTo(environment)
+        updateAutoRegisterTo(autoRegister)
+        UserDefaults.standard.synchronize()
     }
 
     func updateProjectIDTo(_ newID: String) {
@@ -43,7 +44,10 @@ class SettingsViewController: UIViewController {
         guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.rawValue) else { return }
         FlybitsManager.environment = newEnvironment
         UserDefaults.standard.set(newEnvironment.rawValue, forKey: AppDelegate.UserDefaultsKey.environment.rawValue)
-        UserDefaults.standard.synchronize()
+    }
+
+    func updateAutoRegisterTo(_ newAutoRegister: Bool) {
+        UserDefaults.standard.set(newAutoRegister, forKey: AppDelegate.UserDefaultsKey.autoRegisterContextPlugins.rawValue)
     }
 
     // MARK: - Text field selector
@@ -56,14 +60,33 @@ class SettingsViewController: UIViewController {
 // MARK: - Enumerations
 
 extension SettingsViewController {
-    enum Section {
+    enum Section: Int {
         case projectID
         case environment
+        case autoRegister
 
         var title: String {
-            return self == .projectID ? "Project id" : "Environment"
+            switch self {
+            case .projectID:
+                return "Project id"
+            case .environment:
+                return "Environment"
+            case .autoRegister:
+                return "Auto register"
+            }
         }
-        static let count = 2
+        var numberOfRows: Int {
+            switch self {
+            case .projectID:
+                return 1
+            case .environment:
+                return FlybitsManager.Environment.count
+            case .autoRegister:
+                return 1
+            }
+        }
+
+        static let count = 3
     }
 }
 
@@ -75,23 +98,24 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == Section.projectID.hashValue ? 1 : FlybitsManager.Environment.count
+        return Section(rawValue: section)?.numberOfRows ?? 0
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == Section.projectID.hashValue ? Section.projectID.title : Section.environment.title
+        return Section(rawValue: section)?.title
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.projectID.hashValue ? TextFieldCell.reuseID : CheckCell.reuseID,
-                                                 for: indexPath)
+        let cellIdentifier = indexPath.section == Section.projectID.rawValue ? TextFieldCell.reuseID :
+                             (indexPath.section == Section.environment.rawValue ? CheckCell.reuseID : ToggleCell.reuseID)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         switch indexPath.section {
-        case Section.projectID.hashValue:
+        case Section.projectID.rawValue:
             if let textCell = cell as? TextFieldCell {
                 textCell.textField.text = (UIApplication.shared.delegate as! AppDelegate).getFlybitsProjectID()
                 textCell.textField.addTarget(self, action: #selector(projectIDFieldDidChange(_:)), for: .editingChanged)
             }
-        case Section.environment.hashValue:
+        case Section.environment.rawValue:
             if let checkCell = cell as? CheckCell, let environment = FlybitsManager.Environment(rawValue: indexPath.row) {
                 checkCell.checkmarkImageView.tintColor = UINavigationBar.appearance().tintColor
                 checkCell.titleLabel.text = environment.toString()
@@ -101,6 +125,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 } else {
                     checkCell.isChecked = false
                 }
+            }
+        case Section.autoRegister.rawValue:
+            if let toggleCell = cell as? ToggleCell {
+                toggleCell.titleLabel.text = "Enable auto register plugins"
+                toggleCell.toggle.isOn = self.autoRegister
+                toggleCell.action = { self.autoRegister = $0 }
             }
         default:
             break

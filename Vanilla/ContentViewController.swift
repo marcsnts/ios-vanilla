@@ -8,9 +8,12 @@
 
 import UIKit
 import FlybitsKernelSDK
+import UserNotifications
 
 class ContentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    lazy var refreshControl = UIRefreshControl()
+
     var contents = [Content]() {
         didSet {
             DispatchQueue.main.async {
@@ -31,28 +34,65 @@ class ContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerRemoteNotifications()
+        setupPullToRefresh()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchRelevantContent()
     }
 
-    func fetchRelevantContent() {
+    func setupPullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Retrieving relevant content...")
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(fetchRelevantContent), for: .valueChanged)
+    }
+
+    func registerRemoteNotifications() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+        }
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+
+    @objc func fetchRelevantContent() {
         let templateIDsAndClassModelsDictionary: [String: ContentData.Type] = [
-            Template.contact.id(): ContactContentData.self,
-            Template.menuItem.id(): MenuItemContentData.self,
-            Template.restaurant.id(): RestaurauntContentData.self
+            Template.contact.templateId: ContactContentData.self,
+            Template.menuItem.templateId: MenuItemContentData.self,
+            Template.restaurant.templateId: RestaurauntContentData.self
         ]
 
         _ = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, completion: { pagedContent, error in
+            defer {
+                DispatchQueue.main.async {
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
+            }
             guard let pagedContent = pagedContent, error == nil else {
                 return
             }
 
             let contents: [Content] = {
                 var contents = [Content]()
-                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.contact.id()}))
-                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.menuItem.id()}))
-                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.restaurant.id()}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.contact.templateId}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.menuItem.templateId}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.restaurant.templateId}))
                 let customContents = pagedContent.elements.filter({
-                    return !($0.templateId == Template.contact.id() || $0.templateId == Template.menuItem.id() || $0.templateId == Template.restaurant.id())
+                    return !($0.templateId == Template.contact.templateId || $0.templateId == Template.menuItem.templateId
+                             || $0.templateId == Template.restaurant.templateId)
                 })
                 contents.append(contentsOf: customContents)
 
@@ -76,7 +116,7 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         let templateID = templateIDs[section]
         sectionTemplates[section] = templateID
         if let defaultTemplate = Template(fromId: templateID) {
-            return defaultTemplate.title()
+            return defaultTemplate.title
         }
 
         return "Template \(templateID)"

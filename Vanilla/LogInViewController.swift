@@ -17,7 +17,6 @@ protocol UserLogInDelegate: class {
 }
 
 class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDelegate {
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
@@ -43,11 +42,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
             }
             print("Welcome back, \(user.firstname!)")
             print("User is connected. Will show relevant content.")
-            let contentVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
-            contentVc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(LogInViewController.logout(sender:)))
-            DispatchQueue.main.async {
-                self.show(contentVc, sender: self)
-            }
+            self.showContent()
         })
     }
     
@@ -87,11 +82,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let projectID = appDelegate.projectID!
-        let scopes = appDelegate.scopes
-    
+        let autoRegister = UserDefaults.standard.getAutoRegister()
+        let scopes = autoRegister ? appDelegate.autoRegisterScopes : appDelegate.scopes
         let flybitsManager = FlybitsManager(projectID: projectID, idProvider: flybitsIDP, scopes: scopes)
         (UIApplication.shared.delegate as! AppDelegate).flybitsManager = flybitsManager
-        
+
         // Returns a cancellable request like all of our other requests. We disregard as we probably don't care to cancel here.
         _ = flybitsManager.connect { user, error in
             guard let user = user, error == nil else {
@@ -108,12 +103,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     func showContent() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
         vc.navigationItem.hidesBackButton = true
-        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(LogInViewController.logout(sender:)))
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
+                                                              action: #selector(LogInViewController.logout(sender:)))
+        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(showContext))
         DispatchQueue.main.async {
             self.show(vc, sender: self)
         }
     }
-    
+
+    @objc func showContext() {
+        self.show(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Context"), sender: self)
+    }
+
     @objc func logout(sender: Any?) {
         _ = navigationController?.popViewController(animated: true)
         var flybitsManager = (UIApplication.shared.delegate as! AppDelegate).flybitsManager

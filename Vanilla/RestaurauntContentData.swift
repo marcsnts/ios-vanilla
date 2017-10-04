@@ -19,7 +19,7 @@ class RestaurauntContentData: ContentData {
         guard let representation = responseData as? [String: Any] else { throw ContentError.missingRepresentationDictionary }
         guard let name = representation[Key.name.rawValue] as? String else { throw ContentError.missingProperty(Key.name.rawValue) }
         guard let openingDate = representation[Key.openingDate.rawValue] as? String else { throw ContentError.missingProperty(Key.openingDate.rawValue) }
-        guard let numEmployees = representation[Key.location.rawValue] as? Int else { throw ContentError.missingProperty(Key.numberOfEmployees.rawValue) }
+        guard let numEmployees = representation[Key.numberOfEmployees.rawValue] as? Int else { throw ContentError.missingProperty(Key.numberOfEmployees.rawValue) }
         guard let location = representation[Key.location.rawValue] else { throw ContentError.missingProperty(Key.location.rawValue) }
 
         self.name = name

@@ -49,9 +49,8 @@ class RelevantContentTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(RelevantContentTableViewController.showContextMenu))
-        
         self.contextPlugin = BankingDataContextPlugin(accountBalance: 0, segmentation: "", creditCard: "")
         do {
             try ContextManager.shared.register(self.contextPlugin!)
