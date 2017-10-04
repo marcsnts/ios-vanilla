@@ -10,7 +10,7 @@ import Foundation
 import FlybitsContextSDK
 
 class WalletContextPlugin: NSObject, ContextPlugin, DictionaryConvertible {
-    var pluginID: String = CustomPlugin.wallet.id()
+    var pluginID: String = "ctx.ios-vanilla.Finance"
     var refreshTime: Int32 = 15
     var timeUnit: TimeUnit = .seconds
 

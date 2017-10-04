@@ -157,6 +157,6 @@ extension AppDelegate {
     enum UserDefaultsKey: String {
         case environment
         case projectID
-        case autoRegister
+        case autoRegisterContextPlugins
     }
 }

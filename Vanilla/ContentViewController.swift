@@ -68,9 +68,9 @@ class ContentViewController: UIViewController {
 
     @objc func fetchRelevantContent() {
         let templateIDsAndClassModelsDictionary: [String: ContentData.Type] = [
-            Template.contact.id: ContactContentData.self,
-            Template.menuItem.id: MenuItemContentData.self,
-            Template.restaurant.id: RestaurauntContentData.self
+            Template.contact.templateId: ContactContentData.self,
+            Template.menuItem.templateId: MenuItemContentData.self,
+            Template.restaurant.templateId: RestaurauntContentData.self
         ]
 
         _ = Content.getAllRelevant(with: templateIDsAndClassModelsDictionary, completion: { pagedContent, error in
@@ -87,11 +87,12 @@ class ContentViewController: UIViewController {
 
             let contents: [Content] = {
                 var contents = [Content]()
-                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.contact.id}))
-                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.menuItem.id}))
-                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.restaurant.id}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.contact.templateId}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.menuItem.templateId}))
+                contents.append(contentsOf: pagedContent.elements.filter({$0.templateId == Template.restaurant.templateId}))
                 let customContents = pagedContent.elements.filter({
-                    return !($0.templateId == Template.contact.id || $0.templateId == Template.menuItem.id || $0.templateId == Template.restaurant.id)
+                    return !($0.templateId == Template.contact.templateId || $0.templateId == Template.menuItem.templateId
+                             || $0.templateId == Template.restaurant.templateId)
                 })
                 contents.append(contentsOf: customContents)
 

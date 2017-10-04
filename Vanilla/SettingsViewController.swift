@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController {
     }
 
     func updateAutoRegisterTo(_ newAutoRegister: Bool) {
-        UserDefaults.standard.set(newAutoRegister, forKey: AppDelegate.UserDefaultsKey.autoRegister.rawValue)
+        UserDefaults.standard.set(newAutoRegister, forKey: AppDelegate.UserDefaultsKey.autoRegisterContextPlugins.rawValue)
     }
 
     // MARK: - Text field selector
