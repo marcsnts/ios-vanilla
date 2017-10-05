@@ -8,6 +8,8 @@
 
 import UIKit
 import FlybitsKernelSDK
+import FlybitsContextSDK
+import FlybitsPushSDK
 import UserNotifications
 
 class ContentViewController: UIViewController {
@@ -34,6 +36,7 @@ class ContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logout(sender:)))
         registerRemoteNotifications()
         setupPullToRefresh()
     }
@@ -100,6 +103,38 @@ class ContentViewController: UIViewController {
             }()
             self.contents = contents
         })
+    }
+
+    @objc func logout(sender: Any?) {
+        self.dismiss(animated: true, completion: nil)
+        var flybitsManager = (UIApplication.shared.delegate as! AppDelegate).flybitsManager
+        if flybitsManager == nil {
+
+            // When we launch the app and the static method FlybitsManager.isConnected(completion:)
+            // is called and the user wishes to logout, we are forced to re-instantiate flybitsManager
+            // from scratch. As a result, and until we make this easier very soon, it is required
+            // that the user's credentials be stored in the Keychain so that this data is safe.
+            //
+            // In the meantime, as this is merely a demo/proof of concept, we store the user's
+            // credentials in UserDefaults.
+
+            let projectID = (UIApplication.shared.delegate as! AppDelegate).projectID!
+            let scopes: [FlybitsScope] = [KernelScope(), ContextScope(timeToUploadContext: 1, timeUnit: Utilities.TimeUnit.minutes), PushScope()]
+            let identityProvider = FlybitsIDP(email: UserDefaults.standard.string(forKey: "email")!, password: UserDefaults.standard.string(forKey: "password")!)
+            flybitsManager = FlybitsManager(projectID: projectID, idProvider: identityProvider, scopes: scopes)
+        }
+        _ = flybitsManager?.disconnect { jwt, error in
+            guard let _ = jwt, error == nil else {
+                print("Error logging out: \(error!.localizedDescription)")
+                return
+            }
+            print("Logged out")
+            defer {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
 }
 

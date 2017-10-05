@@ -42,6 +42,8 @@ class ContextRulesViewController: UIViewController {
     }
 }
 
+// MARK: - Table view
+
 extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -69,7 +71,7 @@ extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        return
+        guard let cell = tableView.cellForRow(at: indexPath) as? ContextRuleCell else { return }
     }
 }
 

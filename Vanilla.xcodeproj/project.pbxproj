@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */; };
 		494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C48681F841B960000A16E /* ContextPluginViewController.swift */; };
+		494DA6931F86986400143D55 /* NewContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6921F86986400143D55 /* NewContextRuleViewController.swift */; };
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
 		4981EB6A1F827A7300CEAF3F /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB691F827A7300CEAF3F /* ContextViewController.swift */; };
@@ -82,6 +83,7 @@
 /* Begin PBXFileReference section */
 		4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
+		494DA6921F86986400143D55 /* NewContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextRuleViewController.swift; sourceTree = "<group>"; };
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
 		4981EB691F827A7300CEAF3F /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */,
+				494DA6921F86986400143D55 /* NewContextRuleViewController.swift */,
 			);
 			name = "Context Rules";
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				FA546D391F16B8A400038EDA /* DataModels.swift in Sources */,
 				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
 				4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */,
+				494DA6931F86986400143D55 /* NewContextRuleViewController.swift in Sources */,
 				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,
 				494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
