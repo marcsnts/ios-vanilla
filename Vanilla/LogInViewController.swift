@@ -101,13 +101,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     }
     
     func showContent() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Content")
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
         vc.navigationItem.hidesBackButton = true
         vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
                                                               action: #selector(LogInViewController.logout(sender:)))
         vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(showContext))
         DispatchQueue.main.async {
-            self.show(vc, sender: self)
+            self.present(vc, animated: true, completion: nil)
         }
     }
 

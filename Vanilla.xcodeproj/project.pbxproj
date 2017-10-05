@@ -19,6 +19,7 @@
 		4981EB7A1F8297A300CEAF3F /* LocationContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB791F8297A300CEAF3F /* LocationContentData.swift */; };
 		4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
+		49DF523F1F8679CA0061B48A /* ContextRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAEC81F759EE9003D501B /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */; };
@@ -91,6 +92,7 @@
 		4981EB791F8297A300CEAF3F /* LocationContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentData.swift; sourceTree = "<group>"; };
 		4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTemplates.swift; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextRulesViewController.swift; sourceTree = "<group>"; };
 		49EDAEC21F759EE2003D501B /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
@@ -172,10 +174,17 @@
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
+		49DF523D1F8679070061B48A /* Context Rules */ = {
+			isa = PBXGroup;
+			children = (
+				49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */,
+			);
+			name = "Context Rules";
+			sourceTree = "<group>";
+		};
 		FA7556B61F17FD9300D8751A /* Context Data */ = {
 			isa = PBXGroup;
 			children = (
-				4984146D1F852F7100F0E52D /* Plugins */,
 				FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */,
 				4981EB691F827A7300CEAF3F /* ContextViewController.swift */,
 				494C48681F841B960000A16E /* ContextPluginViewController.swift */,
@@ -236,6 +245,8 @@
 				4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */,
 				FA7556B71F17FDCE00D8751A /* Log In / Register */,
 				FA7556B81F17FDE600D8751A /* Content */,
+				49DF523D1F8679070061B48A /* Context Rules */,
+				4984146D1F852F7100F0E52D /* Plugins */,
 				FA7556B61F17FD9300D8751A /* Context Data */,
 				FABE84DB1F151CD900833B93 /* Main.storyboard */,
 				FABE84DE1F151CD900833B93 /* Assets.xcassets */,
@@ -424,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DF523F1F8679CA0061B48A /* ContextRulesViewController.swift in Sources */,
 				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
 				FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */,
 				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,

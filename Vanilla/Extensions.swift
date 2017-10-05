@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlybitsContextSDK
 
 extension String {
     public func heightWithConstrainedWidth(_ width: CGFloat, for font: UIFont = UIFont.systemFont(ofSize: 17)) -> CGFloat {
@@ -49,3 +50,17 @@ extension UserDefaults {
         return (value(forKey: Key.autoRegister.rawValue) as? Bool) ?? false
     }
 }
+
+extension RuleScope {
+    var string: String {
+        switch self {
+        case .Project:
+            return "Project"
+        case .User:
+            return "User"
+        case .All:
+            return "All"
+        }
+    }
+}
+
