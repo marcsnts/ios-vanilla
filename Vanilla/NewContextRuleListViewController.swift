@@ -29,11 +29,15 @@ class NewContextRuleListViewController: UIViewController {
     }
 
     @objc func createRule() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        guard self.rulePredicates.count > 0 else { return }
+        let alert = UIAlertController(title: "Unable to save rule", message: nil, preferredStyle: .alert)
+        guard self.rulePredicates.count > 0 else {
+            alert.message = "Rule predicates are missing, add some predicates"
+            alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         guard let ruleName = self.nameTextField?.text, !self.nameTextField!.text!.isEmpty else {
-            alert.title = "Unable to save rule"
-            alert.message = "Rule is missing a name"
+            alert.message = "This rule is missing a name"
             alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
@@ -52,11 +56,16 @@ class NewContextRuleListViewController: UIViewController {
 
         let rule = Rule(name: ruleName, predicateQuery: query)
         _ = RuleRequest.create(rule: rule, completion: { rule, error in
+            defer {
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
             guard let rule = rule, error == nil else {
                 print(error!.localizedDescription)
                 alert.title = "Error"
                 alert.message = error?.localizedDescription
-                self.present(alert, animated: true, completion: nil)
+                alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
                 return
             }
             print("Rule successfully created!")
