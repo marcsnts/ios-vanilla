@@ -8,6 +8,7 @@
 
 import UIKit
 import FlybitsContextSDK
+import FlybitsPushSDK
 
 class NewContextRuleListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -51,7 +52,7 @@ class NewContextRuleListViewController: UIViewController {
 
         let rule = Rule(name: ruleName, predicateQuery: query)
         _ = RuleRequest.create(rule: rule, completion: { rule, error in
-            guard let rule = rule, error != nil else {
+            guard let rule = rule, error == nil else {
                 print(error!.localizedDescription)
                 alert.title = "Error"
                 alert.message = error?.localizedDescription

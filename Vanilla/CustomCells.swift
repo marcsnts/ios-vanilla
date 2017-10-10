@@ -101,4 +101,3 @@ class CheckCell: UITableViewCell {
         }
     }
 }
-

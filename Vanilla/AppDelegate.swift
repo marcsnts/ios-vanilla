@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         if !checkForRequiredFlybitsProjectID() {
             return false
         }
@@ -39,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().tintColor = UIColor(red: 41/255, green: 190/255, blue: 238/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 51/255, green: 62/255, blue: 72/255, alpha: 1)]
-        
+        window?.backgroundColor = .white
+
         var shouldPerformAdditionalDelegateHandling = true
         
         if let notification = launchOptions?[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification {

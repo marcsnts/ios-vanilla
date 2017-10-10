@@ -59,10 +59,6 @@ extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource
         return self.rules.count
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Context Rules"
-    }
-
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ContextRuleCell.height
     }
@@ -80,4 +76,3 @@ extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource
         guard let _ = tableView.cellForRow(at: indexPath) as? ContextRuleCell else { return }
     }
 }
-

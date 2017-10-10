@@ -47,7 +47,7 @@ class NewContextRuleViewController: UIViewController {
         var rulePredicate: RulePredicate?
         switch self.selectedType {
         case .boolean:
-            rulePredicate = predicateOperator.makeRulePredicate(plugin: pluginText, value: NSString(string: valueText).boolValue)
+            rulePredicate = predicateOperator.makeRulePredicate(plugin: pluginText, value: NSString(string: valueText.lowercased()).boolValue)
         case .integer:
             if let intValue = Int(valueText) {
                 rulePredicate = predicateOperator.makeRulePredicate(plugin: pluginText, value: intValue)
@@ -280,5 +280,4 @@ extension NewContextRuleViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Section(rawValue: section)?.title
     }
-
 }
