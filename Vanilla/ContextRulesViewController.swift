@@ -81,19 +81,3 @@ extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-class ContextRuleCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var scopeLabel: UILabel!
-    @IBOutlet weak var lastEvaluatedLabel: UILabel!
-    var rule: Rule? {
-        didSet {
-            if let rule = self.rule {
-                nameLabel.text = rule.name
-                scopeLabel.text = "Scope: \(rule.scope.string)"
-                lastEvaluatedLabel.text = "Last evaluated: \(rule.lastResult ?? false)"
-            }
-        }
-    }
-    static let reuseID = "ContextRuleCell"
-    static let height: CGFloat = 85
-}

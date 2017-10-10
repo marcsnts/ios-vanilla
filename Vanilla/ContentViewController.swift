@@ -201,13 +201,3 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         self.show(vc, sender: self)
     }
 }
-
-// MARK: - Content table view cell
-
-class ContentCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var contentImageView: UIImageView!
-    var contentData: ContentData?
-    static let reuseID = "ContentCell"
-}

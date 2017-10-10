@@ -282,17 +282,3 @@ extension NewContextRuleViewController: UITableViewDelegate, UITableViewDataSour
     }
 
 }
-
-class RulePredicateCheckCell: CheckCell {
-    var predicate: NewContextRuleViewController.PredicateOperator?
-    override class var reuseID: String {
-        return "RulePredicateCheckCell"
-    }
-}
-
-class RulePredicateTypeCheckCell: CheckCell {
-    var type: NewContextRuleViewController.PredicateValueType?
-    override class var reuseID: String {
-        return "RulePredicateTypeCheckCell"
-    }
-}

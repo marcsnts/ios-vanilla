@@ -164,10 +164,3 @@ extension ContentDataViewController: UITableViewDataSource, UITableViewDelegate 
         return cell
     }
 }
-
-// MARK: - Content data table view cell
-
-class ImageCell: UITableViewCell {
-    static let reuseID = "ImageCell"
-    @IBOutlet weak var imgView: UIImageView!
-}

@@ -168,23 +168,3 @@ extension FlybitsManager.Environment {
 
     static let count = 4
 }
-
-// MARK: - Settings table view cells
-
-class TextFieldCell: UITableViewCell {
-    static let reuseID = "TextFieldCell"
-    @IBOutlet weak var textField: UITextField!
-}
-
-class CheckCell: UITableViewCell {
-    class var reuseID: String {
-        return "CheckCell"
-    }
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var checkmarkImageView: UIImageView!
-    var isChecked: Bool = false {
-        didSet {
-            checkmarkImageView.isHidden = !isChecked
-        }
-    }
-}

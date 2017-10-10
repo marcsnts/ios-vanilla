@@ -142,25 +142,6 @@ extension NewContextRuleListViewController: UITableViewDelegate, UITableViewData
 
 }
 
-class RulePredicateCell: UITableViewCell {
-    @IBOutlet weak var toggle: UISwitch!
-    @IBOutlet weak var rulePredicateTextLabel: UILabel!
-    @IBOutlet weak var andOrLabel: UILabel!
-    var toggleAction: ((Bool) -> Void)?
-    @IBAction func toggleDidChange(_ sender: Any) {
-        predicateOperator = toggle.isOn ? .and : .or
-        if let toggleAction = self.toggleAction {
-            toggleAction(toggle.isOn)
-        }
-    }
-    var predicateOperator: PredicateChainOperator = .and {
-        didSet {
-            andOrLabel.text = toggle.isOn ? "AND" : "OR"
-        }
-    }
-    static let reuseID = "RulePredicateCell"
-}
-
 enum PredicateChainOperator {
     case and
     case or
