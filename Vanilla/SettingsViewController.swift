@@ -177,7 +177,9 @@ class TextFieldCell: UITableViewCell {
 }
 
 class CheckCell: UITableViewCell {
-    static let reuseID = "CheckCell"
+    class var reuseID: String {
+        return "CheckCell"
+    }
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkmarkImageView: UIImageView!
     var isChecked: Bool = false {

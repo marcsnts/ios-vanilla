@@ -23,6 +23,7 @@ class ContextRulesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create a rule", style: .plain, target: self, action: #selector(goToCreateRule))
         fetchContextRules()
     }
 
@@ -39,6 +40,11 @@ class ContextRulesViewController: UIViewController {
             }
             self.rules = rules
         }).execute()
+    }
+
+    @objc func goToCreateRule() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewContextRuleList")
+        self.show(vc, sender: self)
     }
 }
 
@@ -71,7 +77,7 @@ extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ContextRuleCell else { return }
+        guard let _ = tableView.cellForRow(at: indexPath) as? ContextRuleCell else { return }
     }
 }
 
@@ -83,11 +89,11 @@ class ContextRuleCell: UITableViewCell {
         didSet {
             if let rule = self.rule {
                 nameLabel.text = rule.name
-                scopeLabel.text = "\(rule.scope.string) scope"
-                lastEvaluatedLabel.text = "Last evaluated as \(rule.lastResult ?? false)"
+                scopeLabel.text = "Scope: \(rule.scope.string)"
+                lastEvaluatedLabel.text = "Last evaluated: \(rule.lastResult ?? false)"
             }
         }
     }
     static let reuseID = "ContextRuleCell"
-    static let height: CGFloat = 70
+    static let height: CGFloat = 85
 }
