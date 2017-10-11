@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C48681F841B960000A16E /* ContextPluginViewController.swift */; };
-		494DA6931F86986400143D55 /* NewContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6921F86986400143D55 /* NewContextRuleViewController.swift */; };
+		494DA6931F86986400143D55 /* CreateRulePredicateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */; };
 		494DA6951F86C75800143D55 /* NewContextRuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */; };
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
@@ -21,7 +21,7 @@
 		4989CD521F8D4369005F9D32 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989CD511F8D4369005F9D32 /* CustomCells.swift */; };
 		4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
-		49DF523F1F8679CA0061B48A /* ContextRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */; };
+		49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAEC81F759EE9003D501B /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */; };
@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
-		494DA6921F86986400143D55 /* NewContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextRuleViewController.swift; sourceTree = "<group>"; };
+		494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRulePredicateViewController.swift; sourceTree = "<group>"; };
 		494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextRuleListViewController.swift; sourceTree = "<group>"; };
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		4989CD511F8D4369005F9D32 /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTemplates.swift; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextRulesViewController.swift; sourceTree = "<group>"; };
+		49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContextRuleViewController.swift; sourceTree = "<group>"; };
 		49EDAEC21F759EE2003D501B /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
@@ -189,8 +189,8 @@
 		49DF523D1F8679070061B48A /* Context Rules */ = {
 			isa = PBXGroup;
 			children = (
-				49DF523E1F8679CA0061B48A /* ContextRulesViewController.swift */,
-				494DA6921F86986400143D55 /* NewContextRuleViewController.swift */,
+				49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */,
+				494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */,
 				494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */,
 			);
 			name = "Context Rules";
@@ -449,7 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49DF523F1F8679CA0061B48A /* ContextRulesViewController.swift in Sources */,
+				49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */,
 				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
 				FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */,
 				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,
@@ -463,7 +463,7 @@
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
 				FA546D391F16B8A400038EDA /* DataModels.swift in Sources */,
 				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
-				494DA6931F86986400143D55 /* NewContextRuleViewController.swift in Sources */,
+				494DA6931F86986400143D55 /* CreateRulePredicateViewController.swift in Sources */,
 				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,
 				494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,

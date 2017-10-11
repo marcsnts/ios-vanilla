@@ -39,14 +39,14 @@ class ContextRuleCell: UITableViewCell {
 }
 
 class RulePredicateCheckCell: CheckCell {
-    var predicate: NewContextRuleViewController.PredicateOperator?
+    var predicate: CreateRulePredicateViewController.PredicateOperator?
     override class var reuseID: String {
         return "RulePredicateCheckCell"
     }
 }
 
 class RulePredicateTypeCheckCell: CheckCell {
-    var type: NewContextRuleViewController.PredicateValueType?
+    var type: CreateRulePredicateViewController.PredicateValueType?
     override class var reuseID: String {
         return "RulePredicateTypeCheckCell"
     }

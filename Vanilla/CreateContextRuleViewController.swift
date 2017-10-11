@@ -1,5 +1,5 @@
 //
-//  ContextRulesViewController.swift
+//  CreateContextRuleViewController.swift
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-10-05.
@@ -9,7 +9,7 @@
 import UIKit
 import FlybitsContextSDK
 
-class ContextRulesViewController: UIViewController {
+class CreateContextRuleViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var rules = [Rule]() {
         didSet {
@@ -24,7 +24,6 @@ class ContextRulesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create a rule", style: .plain, target: self, action: #selector(goToCreateRule))
-        fetchContextRules()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +49,7 @@ class ContextRulesViewController: UIViewController {
 
 // MARK: - Table view
 
-extension ContextRulesViewController: UITableViewDelegate, UITableViewDataSource {
+extension CreateContextRuleViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

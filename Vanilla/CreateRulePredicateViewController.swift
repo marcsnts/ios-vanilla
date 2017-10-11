@@ -1,5 +1,5 @@
 //
-//  NewContextRuleViewController.swift
+//  CreateRulePredicateViewController
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-10-05.
@@ -9,7 +9,7 @@
 import UIKit
 import FlybitsContextSDK
 
-class NewContextRuleViewController: UIViewController {
+class CreateRulePredicateViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var selectedPredicateCell: RulePredicateCheckCell? {
         willSet {
@@ -37,7 +37,7 @@ class NewContextRuleViewController: UIViewController {
     }
 
     @objc func addRulePredicateToListView() {
-        let alert = UIAlertController(title: "Something went wrong", message: "The rule predicate could not be added", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Failed", message: "One or more fields are missing", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         guard let predicateOperator = self.selectedPredicateCell?.predicate, let valueText = self.valueTextField?.text, !valueText.isEmpty, let pluginText = self.pluginTextField?.text, !pluginText.isEmpty, let ruleListVc = getRuleListViewController() else {
             self.present(alert, animated: true, completion: nil)
@@ -79,7 +79,7 @@ class NewContextRuleViewController: UIViewController {
     }
 }
 
-extension NewContextRuleViewController {
+extension CreateRulePredicateViewController {
     enum Section: Int {
         case plugin
         case type
@@ -204,7 +204,7 @@ extension NewContextRuleViewController {
 
 // MARK: - Table view
 
-extension NewContextRuleViewController: UITableViewDelegate, UITableViewDataSource {
+extension CreateRulePredicateViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.count
     }
