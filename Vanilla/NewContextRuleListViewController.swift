@@ -78,6 +78,8 @@ class NewContextRuleListViewController: UIViewController {
     }
 }
 
+// MARK: - Enumerations
+
 extension NewContextRuleListViewController {
     enum Section: Int {
         case name
@@ -96,7 +98,14 @@ extension NewContextRuleListViewController {
         }
         static let count = 3
     }
+
+    enum PredicateChainOperator {
+        case and
+        case or
+    }
 }
+
+// MARK: - Table view
 
 extension NewContextRuleListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,6 +124,7 @@ extension NewContextRuleListViewController: UITableViewDelegate, UITableViewData
             predicateCell.predicateOperator = .and
             predicateCell.rulePredicateTextLabel.text = rulePredicates[indexPath.row].text
             predicateCell.toggleAction = { isOn in
+                // all rule predicates share the same predicate operators
                 for cell in self.ruleCells {
                     cell.toggle.setOn(isOn, animated: true)
                     cell.predicateOperator = isOn ? .and : .or
@@ -148,10 +158,4 @@ extension NewContextRuleListViewController: UITableViewDelegate, UITableViewData
             self.show(vc, sender: self)
         }
     }
-
-}
-
-enum PredicateChainOperator {
-    case and
-    case or
 }

@@ -66,6 +66,9 @@ class NewContextRuleViewController: UIViewController {
         }
     }
 
+    /*
+     Method that retrieves the corresponding NewContextRuleListViewController within the navigation stack
+     */
     private func getRuleListViewController() -> NewContextRuleListViewController? {
         if let selfIndex = self.navigationController?.viewControllers.index(of: self), selfIndex > 0 {
             if let listVc = self.navigationController?.viewControllers[selfIndex-1] as? NewContextRuleListViewController {
