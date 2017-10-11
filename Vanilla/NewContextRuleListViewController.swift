@@ -64,7 +64,7 @@ class NewContextRuleListViewController: UIViewController {
             guard let rule = rule, error == nil else {
                 print(error!.localizedDescription)
                 alert.title = "Error"
-                alert.message = error?.localizedDescription
+                alert.message = error!.localizedDescription
                 alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
                 return
             }
@@ -143,7 +143,6 @@ extension NewContextRuleListViewController: UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // last section
         if indexPath.section == Section.addRule.rawValue {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewContextRule")
             self.show(vc, sender: self)

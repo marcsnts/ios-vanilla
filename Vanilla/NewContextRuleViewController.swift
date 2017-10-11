@@ -37,9 +37,9 @@ class NewContextRuleViewController: UIViewController {
     }
 
     @objc func addRulePredicateToListView() {
+        let alert = UIAlertController(title: "Something went wrong", message: "The rule predicate could not be added", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         guard let predicateOperator = self.selectedPredicateCell?.predicate, let valueText = self.valueTextField?.text, !valueText.isEmpty, let pluginText = self.pluginTextField?.text, !pluginText.isEmpty, let ruleListVc = getRuleListViewController() else {
-            let alert = UIAlertController(title: "Something went wrong", message: "The rule predicate could not be added", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
@@ -60,6 +60,9 @@ class NewContextRuleViewController: UIViewController {
             let predicateText = "\(pluginText) \(predicateOperator.string.lowercased()) \(valueText)"
             ruleListVc.rulePredicates.append((rulePredicate, predicateText))
             self.navigationController?.popViewController(animated: true)
+        } else {
+            alert.message = "The value entered does not match the type specified. Try again."
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
