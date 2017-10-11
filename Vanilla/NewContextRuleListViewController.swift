@@ -29,16 +29,16 @@ class NewContextRuleListViewController: UIViewController {
     }
 
     @objc func createRule() {
-        let alert = UIAlertController(title: "Unable to save rule", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Unable to create a rule", message: nil, preferredStyle: .alert)
         guard self.rulePredicates.count > 0 else {
-            alert.message = "Rule predicates are missing, add some predicates"
-            alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+            alert.message = "You must add at least one rule predicate to create a Rule"
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
         guard let ruleName = self.nameTextField?.text, !self.nameTextField!.text!.isEmpty else {
-            alert.message = "This rule is missing a name"
-            alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+            alert.message = "Please provide a Rule name."
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
@@ -63,13 +63,13 @@ class NewContextRuleListViewController: UIViewController {
             }
             guard let rule = rule, error == nil else {
                 print(error!.localizedDescription)
-                alert.title = "Error"
+                alert.title = "Failed"
                 alert.message = error!.localizedDescription
-                alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 return
             }
             print("Rule successfully created!")
-            alert.title = "Rule created"
+            alert.title = "Success"
             alert.message = "Rule \(rule.name) has been successfully created"
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                 self.navigationController?.popViewController(animated: true)
@@ -98,11 +98,11 @@ extension NewContextRuleListViewController {
         }
         static let count = 3
     }
+}
 
-    enum PredicateChainOperator {
-        case and
-        case or
-    }
+enum PredicateChainOperator {
+    case and
+    case or
 }
 
 // MARK: - Table view
