@@ -151,12 +151,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-}
 
-extension AppDelegate {
-    enum UserDefaultsKey: String {
-        case environment
-        case projectID
-        case autoRegisterContextPlugins
+    static func logout(completion: @escaping () -> ()) {
+        guard let flybitsManager = UserDefaults.standard.getFlybitsManager() else {
+            print("Flybits Manager could not be retrieved from the user defaults")
+            return
+        }
+
+        _ = flybitsManager.disconnect { jwt, error in
+            guard let _ = jwt, error == nil else {
+                print("Error logging out: \(error!.localizedDescription)")
+                return
+            }
+            UserDefaults.standard.removeObject(forKey: UserDefaults.Key.flybitsManager.rawValue)
+            print("Logged out")
+            completion()
+        }
     }
 }

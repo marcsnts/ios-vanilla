@@ -13,7 +13,6 @@ import FlybitsPushSDK
 
 protocol UserLogInDelegate: class {
     func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ())
-    func logout(sender: Any?)
 }
 
 class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDelegate {
@@ -85,9 +84,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
         let autoRegister = UserDefaults.standard.getAutoRegister()
         let scopes = autoRegister ? appDelegate.autoRegisterScopes : appDelegate.scopes
         let flybitsManager = FlybitsManager(projectID: projectID, idProvider: flybitsIDP, scopes: scopes)
-        (UIApplication.shared.delegate as! AppDelegate).flybitsManager = flybitsManager
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: flybitsManager), forKey: UserDefaults.Key.flybitsManager.rawValue)
 
-        // Returns a cancellable request like all of our other requests. We disregard as we probably don't care to cancel here.
         _ = flybitsManager.connect { user, error in
             guard let user = user, error == nil else {
                 print("Failed to connect")
@@ -102,43 +100,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     
     func showContent() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
-        vc.navigationItem.hidesBackButton = true
-        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
-                                                              action: #selector(LogInViewController.logout(sender:)))
-        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(showContext))
         DispatchQueue.main.async {
             self.present(vc, animated: true, completion: nil)
-        }
-    }
-
-    @objc func showContext() {
-        self.show(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Context"), sender: self)
-    }
-
-    @objc func logout(sender: Any?) {
-        _ = navigationController?.popViewController(animated: true)
-        var flybitsManager = (UIApplication.shared.delegate as! AppDelegate).flybitsManager
-        if flybitsManager == nil {
-            
-            // When we launch the app and the static method FlybitsManager.isConnected(completion:)
-            // is called and the user wishes to logout, we are forced to re-instantiate flybitsManager
-            // from scratch. As a result, and until we make this easier very soon, it is required
-            // that the user's credentials be stored in the Keychain so that this data is safe.
-            //
-            // In the meantime, as this is merely a demo/proof of concept, we store the user's
-            // credentials in UserDefaults.
-            
-            let projectID = (UIApplication.shared.delegate as! AppDelegate).projectID!
-            let scopes: [FlybitsScope] = [KernelScope(), ContextScope(timeToUploadContext: 1, timeUnit: Utilities.TimeUnit.minutes), PushScope()]
-            let identityProvider = FlybitsIDP(email: UserDefaults.standard.string(forKey: "email")!, password: UserDefaults.standard.string(forKey: "password")!)
-            flybitsManager = FlybitsManager(projectID: projectID, idProvider: identityProvider, scopes: scopes)
-        }
-        _ = flybitsManager?.disconnect { jwt, error in
-            guard let _ = jwt, error == nil else {
-                print("Error logging out: \(error!.localizedDescription)")
-                return
-            }
-            print("Logged out")
         }
     }
 }
