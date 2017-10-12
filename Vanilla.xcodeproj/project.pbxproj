@@ -25,7 +25,7 @@
 		4989CD521F8D4369005F9D32 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989CD511F8D4369005F9D32 /* CustomCells.swift */; };
 		4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
-		49D8C34A1F8EBDDE0051AB16 /* RulePredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8C3491F8EBDDE0051AB16 /* RulePredicate.swift */; };
+		49D8C34A1F8EBDDE0051AB16 /* RulePredicateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */; };
 		49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -102,7 +102,7 @@
 		4989CD511F8D4369005F9D32 /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTemplates.swift; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		49D8C3491F8EBDDE0051AB16 /* RulePredicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulePredicate.swift; sourceTree = "<group>"; };
+		49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulePredicateHelper.swift; sourceTree = "<group>"; };
 		49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContextRuleViewController.swift; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 				49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */,
 				494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */,
 				494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */,
-				49D8C3491F8EBDDE0051AB16 /* RulePredicate.swift */,
+				49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */,
 			);
 			name = "Context Rules";
 			sourceTree = "<group>";
@@ -479,7 +479,7 @@
 				4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */,
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
 				FA546D391F16B8A400038EDA /* DataModels.swift in Sources */,
-				49D8C34A1F8EBDDE0051AB16 /* RulePredicate.swift in Sources */,
+				49D8C34A1F8EBDDE0051AB16 /* RulePredicateHelper.swift in Sources */,
 				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
 				494DA6931F86986400143D55 /* CreateRulePredicateViewController.swift in Sources */,
 				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,

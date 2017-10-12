@@ -38,7 +38,6 @@ class ContentViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logout))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Context", style: .plain, target: self, action: #selector(showContext))
         registerRemoteNotifications()
         setupPullToRefresh()
     }
