@@ -803,7 +803,7 @@
         <scene sceneID="e6d-rB-AUg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xDH-7i-iCx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Content" id="AAQ-bL-whp"/>
+                    <tabBarItem key="tabBarItem" title="Content" image="ic_content_copy_black_24px" id="AAQ-bL-whp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EjV-Sb-4oG">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1222,7 +1222,7 @@
         <scene sceneID="njg-Nh-bJs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cdq-Em-pG6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Context Rules" id="Wk9-jb-RUV"/>
+                    <tabBarItem key="tabBarItem" title="Context Rules" image="ic_settings_black_24px" id="Wk9-jb-RUV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Bi-5A-cWh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1467,7 +1467,7 @@
         <scene sceneID="Hfh-38-2Wh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yjQ-ZG-4sD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Push Templates" id="fN3-Lb-Lci"/>
+                    <tabBarItem key="tabBarItem" title="Push Templates" image="ic_tap_and_play_black_24px" id="fN3-Lb-Lci"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AQp-m5-tQs">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1486,7 +1486,10 @@
     <resources>
         <image name="checkmark" width="36" height="25"/>
         <image name="flybits" width="375" height="151"/>
+        <image name="ic_content_copy_black_24px" width="19" height="22"/>
         <image name="ic_extension_black_24px" width="21" height="21"/>
+        <image name="ic_settings_black_24px" width="20" height="20"/>
+        <image name="ic_tap_and_play_black_24px" width="17" height="22"/>
         <image name="no-image-available" width="52" height="26"/>
     </resources>
 </document>
