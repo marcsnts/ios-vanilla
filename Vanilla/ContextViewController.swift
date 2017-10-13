@@ -66,7 +66,7 @@ extension ContextViewController: UITableViewDelegate, UITableViewDataSource {
         guard indexPath.row < (indexPath.section == Section.reservedContextPlugins.rawValue ? ReservedContextPlugin.all.count : CustomContext.all.count) else {
             return UITableViewCell()
         }
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.section == Section.customContextPlugins.rawValue ? self.defaultCellReuseID :
             ToggleCell.reuseID, for: indexPath)
 

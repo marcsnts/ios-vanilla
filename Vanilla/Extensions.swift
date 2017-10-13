@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlybitsContextSDK
 
 extension String {
     public func heightWithConstrainedWidth(_ width: CGFloat, for font: UIFont = UIFont.systemFont(ofSize: 17)) -> CGFloat {
@@ -34,7 +35,8 @@ extension UserDefaults {
     enum Key: String {
         case environment
         case projectID
-        case autoRegister
+        case autoRegisterContextPlugins
+        case flybitsManager
     }
 
     func getEnvironment() -> Int? {
@@ -46,6 +48,22 @@ extension UserDefaults {
     }
 
     func getAutoRegister() -> Bool {
-        return (value(forKey: Key.autoRegister.rawValue) as? Bool) ?? false
+        return (value(forKey: Key.autoRegisterContextPlugins.rawValue) as? Bool) ?? false
+    }
+
+    func getFlybitsManager() -> FlybitsManager? {
+        guard let managerData = UserDefaults.standard.object(forKey: Key.flybitsManager.rawValue) as? Data else { return nil }
+        return NSKeyedUnarchiver.unarchiveObject(with: managerData) as? FlybitsManager
     }
 }
+
+extension RuleScope {
+    var string: String {
+        switch self {
+        case .Project: return "Project"
+        case .User: return "User"
+        case .All: return "All"
+        }
+    }
+}
+

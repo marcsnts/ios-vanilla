@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */; };
 		494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C48681F841B960000A16E /* ContextPluginViewController.swift */; };
+		494DA6931F86986400143D55 /* CreateRulePredicateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */; };
+		494DA6951F86C75800143D55 /* NewContextRuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */; };
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
 		4981EB6A1F827A7300CEAF3F /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB691F827A7300CEAF3F /* ContextViewController.swift */; };
@@ -17,8 +18,11 @@
 		4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB751F8296E900CEAF3F /* MenuItemContentData.swift */; };
 		4981EB781F8296F900CEAF3F /* RestaurauntContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB771F8296F900CEAF3F /* RestaurauntContentData.swift */; };
 		4981EB7A1F8297A300CEAF3F /* LocationContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981EB791F8297A300CEAF3F /* LocationContentData.swift */; };
+		4989CD521F8D4369005F9D32 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989CD511F8D4369005F9D32 /* CustomCells.swift */; };
 		4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
+		49D8C34A1F8EBDDE0051AB16 /* RulePredicateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */; };
+		49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAEC81F759EE9003D501B /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */; };
@@ -79,8 +83,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
+		494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRulePredicateViewController.swift; sourceTree = "<group>"; };
+		494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextRuleListViewController.swift; sourceTree = "<group>"; };
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
 		4981EB691F827A7300CEAF3F /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
@@ -89,8 +94,11 @@
 		4981EB751F8296E900CEAF3F /* MenuItemContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemContentData.swift; sourceTree = "<group>"; };
 		4981EB771F8296F900CEAF3F /* RestaurauntContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurauntContentData.swift; sourceTree = "<group>"; };
 		4981EB791F8297A300CEAF3F /* LocationContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentData.swift; sourceTree = "<group>"; };
+		4989CD511F8D4369005F9D32 /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTemplates.swift; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulePredicateHelper.swift; sourceTree = "<group>"; };
+		49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContextRuleViewController.swift; sourceTree = "<group>"; };
 		49EDAEC21F759EE2003D501B /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
@@ -159,6 +167,14 @@
 			name = Plugins;
 			sourceTree = "<group>";
 		};
+		4989CD501F8D4352005F9D32 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4989CD511F8D4369005F9D32 /* CustomCells.swift */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		4989FB081F7D73E500EE9A70 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +188,20 @@
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
+		49DF523D1F8679070061B48A /* Context Rules */ = {
+			isa = PBXGroup;
+			children = (
+				49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */,
+				494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */,
+				494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */,
+				49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */,
+			);
+			name = "Context Rules";
+			sourceTree = "<group>";
+		};
 		FA7556B61F17FD9300D8751A /* Context Data */ = {
 			isa = PBXGroup;
 			children = (
-				4984146D1F852F7100F0E52D /* Plugins */,
 				FA7556BD1F1807CD00D8751A /* ContextMenuViewController.swift */,
 				4981EB691F827A7300CEAF3F /* ContextViewController.swift */,
 				494C48681F841B960000A16E /* ContextPluginViewController.swift */,
@@ -231,11 +257,13 @@
 		FABE84D61F151CD900833B93 /* Vanilla */ = {
 			isa = PBXGroup;
 			children = (
+				4989CD501F8D4352005F9D32 /* Custom Cells */,
 				FABE85071F154BA700833B93 /* Vanilla.entitlements */,
 				FABE84D71F151CD900833B93 /* AppDelegate.swift */,
-				4907D4FA1F82D6EB001E9F5E /* ToggleCell.swift */,
 				FA7556B71F17FDCE00D8751A /* Log In / Register */,
 				FA7556B81F17FDE600D8751A /* Content */,
+				49DF523D1F8679070061B48A /* Context Rules */,
+				4984146D1F852F7100F0E52D /* Plugins */,
 				FA7556B61F17FD9300D8751A /* Context Data */,
 				FABE84DB1F151CD900833B93 /* Main.storyboard */,
 				FABE84DE1F151CD900833B93 /* Assets.xcassets */,
@@ -424,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */,
 				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
 				FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */,
 				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,
@@ -436,13 +465,16 @@
 				4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */,
 				FABE84D81F151CD900833B93 /* AppDelegate.swift in Sources */,
 				FA546D391F16B8A400038EDA /* DataModels.swift in Sources */,
+				49D8C34A1F8EBDDE0051AB16 /* RulePredicateHelper.swift in Sources */,
 				4981EB761F8296E900CEAF3F /* MenuItemContentData.swift in Sources */,
-				4907D4FB1F82D6EB001E9F5E /* ToggleCell.swift in Sources */,
+				494DA6931F86986400143D55 /* CreateRulePredicateViewController.swift in Sources */,
 				4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */,
 				494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
+				494DA6951F86C75800143D55 /* NewContextRuleListViewController.swift in Sources */,
 				4981EB6E1F82885700CEAF3F /* WalletContextPlugin.swift in Sources */,
 				FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */,
+				4989CD521F8D4369005F9D32 /* CustomCells.swift in Sources */,
 				4981EB7A1F8297A300CEAF3F /* LocationContentData.swift in Sources */,
 				FA7556B51F17FD8B00D8751A /* RestaurantContextPlugin.swift in Sources */,
 			);

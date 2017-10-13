@@ -8,6 +8,8 @@
 
 import UIKit
 import FlybitsKernelSDK
+import FlybitsContextSDK
+import FlybitsPushSDK
 import UserNotifications
 
 class ContentViewController: UIViewController {
@@ -34,6 +36,8 @@ class ContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logout))
         registerRemoteNotifications()
         setupPullToRefresh()
     }
@@ -101,6 +105,18 @@ class ContentViewController: UIViewController {
             self.contents = contents
         })
     }
+
+    @objc func showContext() {
+        self.show(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Context"), sender: self)
+    }
+    
+    @objc func logout() {
+        AppDelegate.logout {
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
 }
 
 // MARK: - Table view
@@ -165,14 +181,4 @@ extension ContentViewController: UITableViewDataSource, UITableViewDelegate {
         vc.title = cell.titleLabel.text
         self.show(vc, sender: self)
     }
-}
-
-// MARK: - Content table view cell
-
-class ContentCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var contentImageView: UIImageView!
-    var contentData: ContentData?
-    static let reuseID = "ContentCell"
 }

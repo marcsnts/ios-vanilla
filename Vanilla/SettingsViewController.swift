@@ -36,18 +36,18 @@ class SettingsViewController: UIViewController {
     }
 
     func updateProjectIDTo(_ newID: String) {
-        UserDefaults.standard.set(newID, forKey: AppDelegate.UserDefaultsKey.projectID.rawValue)
+        UserDefaults.standard.set(newID, forKey: UserDefaults.Key.projectID.rawValue)
         (UIApplication.shared.delegate as! AppDelegate).projectID = newID
     }
 
     func updateEnvironmentTo(_ newEnvironment: FlybitsManager.Environment) {
         guard let newEnvironment = FlybitsManager.Environment(rawValue: newEnvironment.rawValue) else { return }
         FlybitsManager.environment = newEnvironment
-        UserDefaults.standard.set(newEnvironment.rawValue, forKey: AppDelegate.UserDefaultsKey.environment.rawValue)
+        UserDefaults.standard.set(newEnvironment.rawValue, forKey: UserDefaults.Key.environment.rawValue)
     }
 
     func updateAutoRegisterTo(_ newAutoRegister: Bool) {
-        UserDefaults.standard.set(newAutoRegister, forKey: AppDelegate.UserDefaultsKey.autoRegisterContextPlugins.rawValue)
+        UserDefaults.standard.set(newAutoRegister, forKey: UserDefaults.Key.autoRegisterContextPlugins.rawValue)
     }
 
     // MARK: - Text field selector
@@ -167,22 +167,4 @@ extension FlybitsManager.Environment {
     }
 
     static let count = 4
-}
-
-// MARK: - Settings table view cells
-
-class TextFieldCell: UITableViewCell {
-    static let reuseID = "TextFieldCell"
-    @IBOutlet weak var textField: UITextField!
-}
-
-class CheckCell: UITableViewCell {
-    static let reuseID = "CheckCell"
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var checkmarkImageView: UIImageView!
-    var isChecked: Bool = false {
-        didSet {
-            checkmarkImageView.isHidden = !isChecked
-        }
-    }
 }
