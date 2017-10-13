@@ -72,32 +72,29 @@ struct RulePredicateFactory {
     func makeRulePredicate(pluginId: String, value: RulePredicatable) -> RulePredicate? {
         guard let selectedOperator = self.selectedOperator, self.predicateOperators.contains(selectedOperator) else { return nil }
 
-        // Non-integer predicate value types
-        switch selectedOperator {
-        case .equalTo:
-            if let stringValue = value as? String {
-                return RulePredicate.equals(plugin: pluginId, value: stringValue)
-            } else if let boolValue = value as? Bool {
-                return RulePredicate.equals(plugin: pluginId, value: boolValue)
+        if let intValue = value as? Int {
+            switch selectedOperator {
+            case .equalTo: return RulePredicate.equals(plugin: pluginId, value: intValue)
+            case .notEqualTo: return RulePredicate.notEquals(plugin: pluginId, value: intValue)
+            case .lessThan: return RulePredicate.lessThan(plugin: pluginId, value: intValue)
+            case .lessThanOrEqualTo: return RulePredicate.lessThanOrEqual(plugin: pluginId, value: intValue)
+            case .greaterThan: return RulePredicate.greaterThan(plugin: pluginId, value: intValue)
+            case .greaterThanOrEqualTo: return RulePredicate.greaterThanOrEqual(plugin: pluginId, value: intValue)
             }
-        case .notEqualTo:
-            if let stringValue = value as? String {
-                return RulePredicate.notEquals(plugin: pluginId, value: stringValue)
-            } else if let boolValue = value as? Bool {
-                return RulePredicate.notEquals(plugin: pluginId, value: boolValue)
+        } else if let stringValue = value as? String {
+            switch selectedOperator {
+            case .equalTo: return RulePredicate.equals(plugin: pluginId, value: stringValue)
+            case .notEqualTo: return RulePredicate.notEquals(plugin: pluginId, value: stringValue)
+            default: break
             }
-        default: return nil
+        } else if let boolValue = value as? Bool {
+            switch selectedOperator {
+            case .equalTo: return RulePredicate.equals(plugin: pluginId, value: boolValue)
+            case .notEqualTo: return RulePredicate.notEquals(plugin: pluginId, value: boolValue)
+            default: break
+            }
         }
 
-        // Integer predicate value types
-        guard let intValue = value as? Int else { return nil }
-        switch selectedOperator {
-        case .equalTo: return RulePredicate.equals(plugin: pluginId, value: intValue)
-        case .notEqualTo: return RulePredicate.notEquals(plugin: pluginId, value: intValue)
-        case .lessThan: return RulePredicate.lessThan(plugin: pluginId, value: intValue)
-        case .lessThanOrEqualTo: return RulePredicate.lessThanOrEqual(plugin: pluginId, value: intValue)
-        case .greaterThan: return RulePredicate.greaterThan(plugin: pluginId, value: intValue)
-        case .greaterThanOrEqualTo: return RulePredicate.greaterThanOrEqual(plugin: pluginId, value: intValue)
-        }
+        return nil
     }
 }
