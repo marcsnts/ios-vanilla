@@ -23,16 +23,16 @@ class PushTemplatesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationButtons()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationButtons()
+        setupNavigationBar()
         fetchPushTemplates()
     }
 
-    func setupNavigationButtons() {
+    func setupNavigationBar() {
+        self.title = "Push Templates"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(goToCreatePushTemplate))
     }
 
@@ -45,6 +45,8 @@ class PushTemplatesViewController: UIViewController {
 
     @objc func goToCreatePushTemplate() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreatePushTemplate")
+//        vc.navigationItem.backBarButtonItem?.title = "Back"
+        self.navigationItem.backBarButtonItem?.title = "Back"
         DispatchQueue.main.async {
             self.show(vc, sender: self)
         }

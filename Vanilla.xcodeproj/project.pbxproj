@@ -12,7 +12,7 @@
 		49368AAC1F8FF35B005D657C /* CreatePushTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49368AAB1F8FF35B005D657C /* CreatePushTemplateViewController.swift */; };
 		494C48691F841B960000A16E /* ContextPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C48681F841B960000A16E /* ContextPluginViewController.swift */; };
 		494DA6931F86986400143D55 /* CreateRulePredicateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */; };
-		494DA6951F86C75800143D55 /* NewContextRuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */; };
+		494DA6951F86C75800143D55 /* CreateContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DA6941F86C75800143D55 /* CreateContextRuleViewController.swift */; };
 		494EAAEA1F793FAE00D01197 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EAAE91F793FAE00D01197 /* SettingsViewController.swift */; };
 		49634AA61F8FE10E005DDA33 /* PushTemplatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49634AA51F8FE10E005DDA33 /* PushTemplatesViewController.swift */; };
 		4981B12F1F7BE516000D63FE /* ContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */; };
@@ -26,7 +26,7 @@
 		4989FB101F7D8AA900EE9A70 /* ContentTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */; };
 		49AE955B1F7986930050530B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE955A1F7986930050530B /* ContentViewController.swift */; };
 		49D8C34A1F8EBDDE0051AB16 /* RulePredicateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */; };
-		49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */; };
+		49DF523F1F8679CA0061B48A /* ContextRulesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF523E1F8679CA0061B48A /* ContextRulesListViewController.swift */; };
 		49EDAEC61F759EE9003D501B /* FlybitsContextSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; };
 		49EDAEC71F759EE9003D501B /* FlybitsContextSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAEC81F759EE9003D501B /* FlybitsKernelSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */; };
@@ -89,7 +89,7 @@
 		49368AAB1F8FF35B005D657C /* CreatePushTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePushTemplateViewController.swift; sourceTree = "<group>"; };
 		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
 		494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRulePredicateViewController.swift; sourceTree = "<group>"; };
-		494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextRuleListViewController.swift; sourceTree = "<group>"; };
+		494DA6941F86C75800143D55 /* CreateContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContextRuleViewController.swift; sourceTree = "<group>"; };
 		494EAAE91F793FAE00D01197 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		49634AA51F8FE10E005DDA33 /* PushTemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTemplatesViewController.swift; sourceTree = "<group>"; };
 		4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDataViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		4989FB0F1F7D8AA900EE9A70 /* ContentTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTemplates.swift; sourceTree = "<group>"; };
 		49AE955A1F7986930050530B /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulePredicateHelper.swift; sourceTree = "<group>"; };
-		49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContextRuleViewController.swift; sourceTree = "<group>"; };
+		49DF523E1F8679CA0061B48A /* ContextRulesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextRulesListViewController.swift; sourceTree = "<group>"; };
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
 		49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsKernelSDK.framework; path = Frameworks/FlybitsKernelSDK.framework; sourceTree = "<group>"; };
@@ -204,9 +204,9 @@
 		49DF523D1F8679070061B48A /* Context Rules */ = {
 			isa = PBXGroup;
 			children = (
-				49DF523E1F8679CA0061B48A /* CreateContextRuleViewController.swift */,
+				49DF523E1F8679CA0061B48A /* ContextRulesListViewController.swift */,
 				494DA6921F86986400143D55 /* CreateRulePredicateViewController.swift */,
-				494DA6941F86C75800143D55 /* NewContextRuleListViewController.swift */,
+				494DA6941F86C75800143D55 /* CreateContextRuleViewController.swift */,
 				49D8C3491F8EBDDE0051AB16 /* RulePredicateHelper.swift */,
 			);
 			name = "Context Rules";
@@ -466,7 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49DF523F1F8679CA0061B48A /* CreateContextRuleViewController.swift in Sources */,
+				49DF523F1F8679CA0061B48A /* ContextRulesListViewController.swift in Sources */,
 				FABE85101F1554BF00833B93 /* RelevantContentViewController.swift in Sources */,
 				FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */,
 				FAD5739A1F1668560057D5BB /* RegisterViewController.swift in Sources */,
@@ -487,7 +487,7 @@
 				49368AAC1F8FF35B005D657C /* CreatePushTemplateViewController.swift in Sources */,
 				49634AA61F8FE10E005DDA33 /* PushTemplatesViewController.swift in Sources */,
 				49AE955B1F7986930050530B /* ContentViewController.swift in Sources */,
-				494DA6951F86C75800143D55 /* NewContextRuleListViewController.swift in Sources */,
+				494DA6951F86C75800143D55 /* CreateContextRuleViewController.swift in Sources */,
 				4981EB6E1F82885700CEAF3F /* WalletContextPlugin.swift in Sources */,
 				FA7556BE1F1807CD00D8751A /* ContextMenuViewController.swift in Sources */,
 				4989CD521F8D4369005F9D32 /* CustomCells.swift in Sources */,
