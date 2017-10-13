@@ -9,6 +9,7 @@
 import UIKit
 import FlybitsContextSDK
 import FlybitsKernelSDK
+import FlybitsPushSDK
 
 class ToggleCell: UITableViewCell {
     static let reuseID = "ToggleCell"
@@ -49,6 +50,13 @@ class RulePredicateTypeCheckCell: CheckCell {
     var type: RulePredicateValueType?
     override class var reuseID: String {
         return "RulePredicateTypeCheckCell"
+    }
+}
+
+class RuleResultCheckCell: CheckCell {
+    var ruleResult: RuleResult?
+    override class var reuseID: String {
+        return "RuleResultCheckCell"
     }
 }
 

@@ -2,12 +2,13 @@
 //  Extensions.swift
 //  Vanilla
 //
-//  Created by Alex on 7/16/17.
+//  Created by Flybits Inc on 7/16/17.
 //  Copyright © Flybits Inc. All rights reserved.
 //
 
 import UIKit
 import FlybitsContextSDK
+import FlybitsPushSDK
 
 extension String {
     public func heightWithConstrainedWidth(_ width: CGFloat, for font: UIFont = UIFont.systemFont(ofSize: 17)) -> CGFloat {
@@ -67,3 +68,14 @@ extension RuleScope {
     }
 }
 
+extension RuleResult {
+    var string: String {
+        switch self {
+        case .false: return "is False"
+        case .true: return "is True"
+        case .trueOrFalse: return "is either True or False"
+        }
+    }
+
+    static let numberOfPossibleResults = 3
+}

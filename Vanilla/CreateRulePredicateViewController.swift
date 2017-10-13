@@ -3,7 +3,7 @@
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-10-05.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © 2017 Flybits Inc. All rights reserved.
 //
 
 import UIKit
@@ -69,9 +69,9 @@ class CreateRulePredicateViewController: UIViewController {
     /*
      Method that retrieves the corresponding NewContextRuleListViewController within the navigation stack
      */
-    private func getRuleListViewController() -> NewContextRuleListViewController? {
+    private func getRuleListViewController() -> CreateContextRuleViewController? {
         if let selfIndex = self.navigationController?.viewControllers.index(of: self), selfIndex > 0 {
-            if let listVc = self.navigationController?.viewControllers[selfIndex-1] as? NewContextRuleListViewController {
+            if let listVc = self.navigationController?.viewControllers[selfIndex-1] as? CreateContextRuleViewController {
                 return listVc
             }
         }

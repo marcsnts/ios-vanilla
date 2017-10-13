@@ -419,6 +419,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 /// A list of error codes that can be issued by the <code>PushManager</code>.
 SWIFT_CLASS("_TtC14FlybitsPushSDK25PushManagerErrorConstants")
 @interface PushManagerErrorConstants : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSNotificationName _Nonnull PushMessageReceived_DEBUG;)
++ (NSNotificationName _Nonnull)PushMessageReceived_DEBUG SWIFT_WARN_UNUSED_RESULT;
 /// <code>com.flybits.push.error.fetchEmpty</code> - An error indicating that no data was returned when a fetch was attempted.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull FetchEmpty;)
 + (NSString * _Nonnull)FetchEmpty SWIFT_WARN_UNUSED_RESULT;
@@ -508,7 +510,7 @@ SWIFT_CLASS("_TtC14FlybitsPushSDK9PushQuery")
 /// the Push SDK. This is a primary step to configure and define attributes that are required for
 /// notifications processing.
 SWIFT_CLASS("_TtC14FlybitsPushSDK9PushScope")
-@interface PushScope : NSObject
+@interface PushScope : NSObject <NSCoding>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL authenticated;)
 + (BOOL)authenticated SWIFT_WARN_UNUSED_RESULT;
 /// Scope name for the Push SDK

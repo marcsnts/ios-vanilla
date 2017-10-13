@@ -105,10 +105,6 @@ class ContentViewController: UIViewController {
             self.contents = contents
         })
     }
-
-    @objc func showContext() {
-        self.show(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Context"), sender: self)
-    }
     
     @objc func logout() {
         AppDelegate.logout {
