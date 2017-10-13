@@ -3,7 +3,7 @@
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-10-12.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © 2017 Flybits Inc. All rights reserved.
 //
 
 import UIKit
@@ -45,8 +45,6 @@ class PushTemplatesViewController: UIViewController {
 
     @objc func goToCreatePushTemplate() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreatePushTemplate")
-//        vc.navigationItem.backBarButtonItem?.title = "Back"
-        self.navigationItem.backBarButtonItem?.title = "Back"
         DispatchQueue.main.async {
             self.show(vc, sender: self)
         }

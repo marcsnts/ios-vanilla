@@ -2,7 +2,7 @@
 //  BankingDataContextPlugin.swift
 //  Vanilla
 //
-//  Created by Alex on 7/12/17.
+//  Created by Flybits Inc on 7/12/17.
 //  Copyright © Flybits Inc. All rights reserved.
 //
 

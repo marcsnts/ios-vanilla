@@ -3,7 +3,7 @@
 //  Vanilla
 //
 //  Created by Marc Santos on 2017-10-12.
-//  Copyright © 2017 Alex. All rights reserved.
+//  Copyright © 2017 Flybits Inc. All rights reserved.
 //
 
 import UIKit
