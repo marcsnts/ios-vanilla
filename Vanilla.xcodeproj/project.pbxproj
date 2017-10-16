@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491EDBDE1F95220800B9A142 /* FlybitsProjectID.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EDBDD1F95220800B9A142 /* FlybitsProjectID.plist */; };
 		49368AA91F8FEEFA005D657C /* FlybitsPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49368AA81F8FEEF3005D657C /* FlybitsPushSDK.framework */; };
 		49368AAA1F8FEEFA005D657C /* FlybitsPushSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49368AA81F8FEEF3005D657C /* FlybitsPushSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49368AAC1F8FF35B005D657C /* CreatePushTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49368AAB1F8FF35B005D657C /* CreatePushTemplateViewController.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		491EDBDD1F95220800B9A142 /* FlybitsProjectID.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FlybitsProjectID.plist; sourceTree = "<group>"; };
 		49368AA81F8FEEF3005D657C /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49368AAB1F8FF35B005D657C /* CreatePushTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePushTemplateViewController.swift; sourceTree = "<group>"; };
 		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		FABE84CB1F151CD900833B93 = {
 			isa = PBXGroup;
 			children = (
+				491EDBDD1F95220800B9A142 /* FlybitsProjectID.plist */,
 				FA47E4B71F1D9647002262EF /* README.md */,
 				FABE84D61F151CD900833B93 /* Vanilla */,
 				FABE84EB1F151CD900833B93 /* VanillaTests */,
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABE84E21F151CD900833B93 /* LaunchScreen.storyboard in Resources */,
+				491EDBDE1F95220800B9A142 /* FlybitsProjectID.plist in Resources */,
 				FABE84DF1F151CD900833B93 /* Assets.xcassets in Resources */,
 				FABE84DD1F151CD900833B93 /* Main.storyboard in Resources */,
 			);
