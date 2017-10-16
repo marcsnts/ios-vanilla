@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var projectID: String!
+    var projectID: String?
     var flybitsManager: FlybitsManager?
     lazy var scopes: [FlybitsScope] = [
         KernelScope(),
@@ -68,6 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      - warning: Will return `nil` if `FlybitsProjectID.plist` does not exist with key "ProjectID"
      */
     func getFlybitsProjectID() -> String? {
+        if let userDefaultsProjectId = UserDefaults.standard.string(forKey: UserDefaults.Key.projectID.rawValue) {
+            return userDefaultsProjectId
+        }
+
         guard let url = Bundle.main.url(forResource: "FlybitsProjectID", withExtension: "plist") else {
             print("Missing FlybitsProjectID.plist file")
             return nil
@@ -77,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return nil
         }
 
-        return UserDefaults.standard.string(forKey: "projectID") ?? projectID
+        return projectID
     }
 
     // MARK: - APNS Notifications

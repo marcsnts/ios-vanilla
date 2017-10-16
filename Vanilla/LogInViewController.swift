@@ -80,10 +80,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     
     func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let projectID = appDelegate.projectID!
+        guard let projectId = appDelegate.getFlybitsProjectID() else {
+            let alert = UIAlertController(title: "Missing project id",
+                                          message: "Make sure the project ID is set through the settings page or the FlybitsProjectID.plist",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let autoRegister = UserDefaults.standard.getAutoRegister()
         let scopes = autoRegister ? appDelegate.autoRegisterScopes : appDelegate.scopes
-        let flybitsManager = FlybitsManager(projectID: projectID, idProvider: flybitsIDP, scopes: scopes)
+        let flybitsManager = FlybitsManager(projectID: projectId, idProvider: flybitsIDP, scopes: scopes)
         UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: flybitsManager), forKey: UserDefaults.Key.flybitsManager.rawValue)
 
         _ = flybitsManager.connect { user, error in
