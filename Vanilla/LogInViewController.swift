@@ -80,10 +80,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
     
     func connect(with flybitsIDP: FlybitsIDP, completion: @escaping (Bool, Error?) -> ()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let projectID = appDelegate.projectID!
+        guard let projectId = appDelegate.getFlybitsProjectID() else {
+            let alert = UIAlertController(title: "Missing project id",
+                                          message: "Make sure the project ID is set through the settings page or the FlybitsProjectID.plist",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let autoRegister = UserDefaults.standard.getAutoRegister()
         let scopes = autoRegister ? appDelegate.autoRegisterScopes : appDelegate.scopes
-        let flybitsManager = FlybitsManager(projectID: projectID, idProvider: flybitsIDP, scopes: scopes)
+        let flybitsManager = FlybitsManager(projectID: projectId, idProvider: flybitsIDP, scopes: scopes)
         UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: flybitsManager), forKey: UserDefaults.Key.flybitsManager.rawValue)
 
         _ = flybitsManager.connect { user, error in
@@ -93,11 +100,22 @@ class LogInViewController: UIViewController, UITextFieldDelegate, UserLogInDeleg
                 return
             }
             print("Welcome, \(user.firstname!)")
+            if !autoRegister {
+                self.registerDefaultContextPlugins(refreshTime: 45, timeUnit: .seconds)
+            }
             self.showContent()
             completion(true, nil)
         }
     }
-    
+
+    /*
+     Method that registers the default reserved context plugins `ReservedContextPlugin.battery` and `ReservedContextPlugin.coreLocation`
+     */
+    func registerDefaultContextPlugins(refreshTime: Int, timeUnit: TimeUnit) {
+        _ = ContextManager.shared.register(.battery, refreshTime: refreshTime, timeUnit: timeUnit)
+        _ = ContextManager.shared.register(.coreLocation, refreshTime: refreshTime, timeUnit: timeUnit)
+    }
+
     func showContent() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
         DispatchQueue.main.async {

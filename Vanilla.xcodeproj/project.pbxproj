@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491EDBE21F95238700B9A142 /* FlybitsProjectID.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EDBE11F95238700B9A142 /* FlybitsProjectID.plist */; };
 		49368AA91F8FEEFA005D657C /* FlybitsPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49368AA81F8FEEF3005D657C /* FlybitsPushSDK.framework */; };
 		49368AAA1F8FEEFA005D657C /* FlybitsPushSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49368AA81F8FEEF3005D657C /* FlybitsPushSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49368AAC1F8FF35B005D657C /* CreatePushTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49368AAB1F8FF35B005D657C /* CreatePushTemplateViewController.swift */; };
@@ -33,7 +34,6 @@
 		49EDAEC91F759EE9003D501B /* FlybitsKernelSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49EDAECC1F759EE9003D501B /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */; };
 		49EDAECD1F759EE9003D501B /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49EDAED31F75A1F1003D501B /* FlybitsProjectID.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49EDAED21F75A1F1003D501B /* FlybitsProjectID.plist */; };
 		FA4656901F1C59CB00A13F72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46568F1F1C59CB00A13F72 /* Extensions.swift */; };
 		FA546D391F16B8A400038EDA /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA546D381F16B8A400038EDA /* DataModels.swift */; };
 		FA7556AE1F16D23400D8751A /* BankingDataContextPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7556AD1F16D23400D8751A /* BankingDataContextPlugin.swift */; };
@@ -85,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		491EDBE11F95238700B9A142 /* FlybitsProjectID.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FlybitsProjectID.plist; sourceTree = "<group>"; };
 		49368AA81F8FEEF3005D657C /* FlybitsPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsPushSDK.framework; path = Frameworks/FlybitsPushSDK.framework; sourceTree = "<group>"; };
 		49368AAB1F8FF35B005D657C /* CreatePushTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePushTemplateViewController.swift; sourceTree = "<group>"; };
 		494C48681F841B960000A16E /* ContextPluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextPluginViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		49EDAEC31F759EE2003D501B /* FlybitsContextSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsContextSDK.framework; path = Frameworks/FlybitsContextSDK.framework; sourceTree = "<group>"; };
 		49EDAEC41F759EE2003D501B /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsSDK.framework; path = Frameworks/FlybitsSDK.framework; sourceTree = "<group>"; };
 		49EDAEC51F759EE2003D501B /* FlybitsKernelSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlybitsKernelSDK.framework; path = Frameworks/FlybitsKernelSDK.framework; sourceTree = "<group>"; };
-		49EDAED21F75A1F1003D501B /* FlybitsProjectID.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FlybitsProjectID.plist; sourceTree = "<group>"; };
 		FA46568F1F1C59CB00A13F72 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FA47E4B71F1D9647002262EF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA546D381F16B8A400038EDA /* DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 		FABE84CB1F151CD900833B93 = {
 			isa = PBXGroup;
 			children = (
+				491EDBE11F95238700B9A142 /* FlybitsProjectID.plist */,
 				FA47E4B71F1D9647002262EF /* README.md */,
-				49EDAED21F75A1F1003D501B /* FlybitsProjectID.plist */,
 				FABE84D61F151CD900833B93 /* Vanilla */,
 				FABE84EB1F151CD900833B93 /* VanillaTests */,
 				FABE84F61F151CD900833B93 /* VanillaUITests */,
@@ -439,7 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABE84E21F151CD900833B93 /* LaunchScreen.storyboard in Resources */,
-				49EDAED31F75A1F1003D501B /* FlybitsProjectID.plist in Resources */,
+				491EDBE21F95238700B9A142 /* FlybitsProjectID.plist in Resources */,
 				FABE84DF1F151CD900833B93 /* Assets.xcassets in Resources */,
 				FABE84DD1F151CD900833B93 /* Main.storyboard in Resources */,
 			);
