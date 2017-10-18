@@ -43,7 +43,9 @@ class CreatePushTemplateViewController: UIViewController {
             alert.title = title
             alert.message = message
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         guard let name = nameTextField?.text, !name.isEmpty, let title = titleTextField?.text, !title.isEmpty,
               let message = messageTextField?.text, !message.isEmpty else {
