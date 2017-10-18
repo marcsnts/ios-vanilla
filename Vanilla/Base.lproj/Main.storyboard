@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1040,41 +1040,6 @@
                                     <outlet property="delegate" destination="V1u-Sk-Gjh" id="Q9b-Mj-s0X"/>
                                 </connections>
                             </tableView>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RulePredicateCheckCell" translatesAutoresizingMaskIntoConstraints="NO" id="j1U-gh-wPe" customClass="RulePredicateCheckCell" customModule="Vanilla" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="311" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j1U-gh-wPe" id="oWM-Hf-bNY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="OHb-dO-SC1">
-                                            <rect key="frame" x="327" y="10" width="25" height="24"/>
-                                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="25" id="en6-Gu-Q96"/>
-                                                <constraint firstAttribute="height" constant="24" id="hxT-V3-ePU"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enivronment placeholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6u8-fA-hZn">
-                                            <rect key="frame" x="14" y="12" width="276" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="6u8-fA-hZn" firstAttribute="centerY" secondItem="oWM-Hf-bNY" secondAttribute="centerY" id="2k7-bH-3w2"/>
-                                        <constraint firstItem="6u8-fA-hZn" firstAttribute="leading" secondItem="oWM-Hf-bNY" secondAttribute="leading" constant="14" id="AwX-Xn-f7O"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="OHb-dO-SC1" secondAttribute="trailing" constant="15" id="Q36-bt-WzA"/>
-                                        <constraint firstItem="OHb-dO-SC1" firstAttribute="centerY" secondItem="oWM-Hf-bNY" secondAttribute="centerY" id="edj-84-6XM"/>
-                                        <constraint firstItem="OHb-dO-SC1" firstAttribute="leading" secondItem="6u8-fA-hZn" secondAttribute="trailing" constant="37" id="xeL-gb-1uQ"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="checkmarkImageView" destination="OHb-dO-SC1" id="gj2-7z-ulN"/>
-                                    <outlet property="titleLabel" destination="6u8-fA-hZn" id="zqn-9s-ZAW"/>
-                                </connections>
-                            </tableViewCell>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

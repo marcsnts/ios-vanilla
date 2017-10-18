@@ -236,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				4989FB081F7D73E500EE9A70 /* Data Models */,
-				FA46568F1F1C59CB00A13F72 /* Extensions.swift */,
 				FABE850F1F1554BF00833B93 /* RelevantContentViewController.swift */,
 				49AE955A1F7986930050530B /* ContentViewController.swift */,
 				4981B12E1F7BE516000D63FE /* ContentDataViewController.swift */,
@@ -270,6 +269,7 @@
 		FABE84D61F151CD900833B93 /* Vanilla */ = {
 			isa = PBXGroup;
 			children = (
+				FA46568F1F1C59CB00A13F72 /* Extensions.swift */,
 				49634AA41F8FE067005DDA33 /* Push Templates */,
 				4989CD501F8D4352005F9D32 /* Custom Cells */,
 				FABE85071F154BA700833B93 /* Vanilla.entitlements */,
